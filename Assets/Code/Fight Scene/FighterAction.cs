@@ -14,12 +14,18 @@ public class FighterAction : MonoBehaviour
     private GameObject elementTwoPrefab;
 
     private GameObject currentAttack;
-    private GameObject elementOneAttack;
-    private GameObject elementTwoAttack;
+
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+    }
 
     public void SelectAttack(string btn)
     {
         GameObject victim = player;
+
         if (tag == "Player"){
             victim = enemy;
         }
@@ -27,10 +33,12 @@ public class FighterAction : MonoBehaviour
         if (btn.CompareTo("elementOne") == 0)
         {
             Debug.Log("Element 1 Button Pressed");
+            elementOnePrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else if (btn.CompareTo("elementTwo") == 0)
         {
             Debug.Log("Element 2 Button Pressed");
+            elementTwoPrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else
         {
