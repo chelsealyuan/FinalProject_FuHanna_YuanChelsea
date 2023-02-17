@@ -40,8 +40,9 @@ public class GameController : MonoBehaviour
         if (!currentFighterStats.GetDead()) //if fighter is not dead
         {
             GameObject currentUnit = currentFighterStats.gameObject;
+            /*
             Debug.Log("current unit is ");
-            Debug.Log(currentUnit.tag);
+            Debug.Log(currentUnit.tag);*/
             currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn); //recalc whose turn it is
             fighterStats.Add(currentFighterStats);
             fighterStats.Sort(); //get the next attacker by atk speed
