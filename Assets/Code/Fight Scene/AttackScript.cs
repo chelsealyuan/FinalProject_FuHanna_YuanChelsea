@@ -45,7 +45,8 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject victim)
     {
-        Debug.Log(victim);
+        Debug.Log("This is the turn's victim" + victim.tag);
+        Debug.Log("This is the turn's caster" + owner.tag);
 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
@@ -54,7 +55,11 @@ public class AttackScript : MonoBehaviour
         if (attackerStats.magic >= magicCost)
         {
             float multiplier = Random.Range(minAttackMultiplier, maxAttackMultiplier);
-            attackerStats.updateMagicFill(magicCost);
+          
+            if (magicCost > 0)
+            {
+                attackerStats.updateMagicFill(magicCost);
+            }
 
             damage = multiplier * attackerStats.melee;
             if (magicAttack)
@@ -70,6 +75,7 @@ public class AttackScript : MonoBehaviour
             //owner.GetComponent<Animator>().Play(animationName)
 
             targetStats.ReceiveDamage(damage);
+            //attackerStats.updateMagicFill(magicCost);
         }
     
     }
