@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
             {
                 //string attackType = Random.Range(0, 2) == 1 > "elementOne" : "elementTwo"; //deciding on the enemy's atk
 
+                this.battleMenu.SetActive(false);
                 string attackType;
                 if (Random.Range(0,2) == 1) {
                     attackType = "elementOne";
