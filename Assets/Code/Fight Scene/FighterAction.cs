@@ -26,18 +26,18 @@ public class FighterAction : MonoBehaviour
     {
         GameObject victim = player;
 
-        if (tag == "Player"){
+        if (tag == "Player") {
             victim = enemy;
         }
 
         if (btn.CompareTo("elementOne") == 0)
         {
-            Debug.Log("Element 1 Button Pressed");
+            //Debug.Log("Element 1 Button Pressed");
             elementOnePrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else if (btn.CompareTo("elementTwo") == 0)
         {
-            Debug.Log("Element 2 Button Pressed");
+            //Debug.Log("Element 2 Button Pressed");
             elementTwoPrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else

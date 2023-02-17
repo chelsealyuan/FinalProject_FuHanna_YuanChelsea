@@ -45,8 +45,8 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject victim)
     {
-        Debug.Log("This is the turn's victim" + victim.tag);
-        Debug.Log("This is the turn's caster" + owner.tag);
+        Debug.Log("This turn's victim is " + victim.tag);
+        Debug.Log("This turn's caster is " + owner.tag); //sometimes not picking up
 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
