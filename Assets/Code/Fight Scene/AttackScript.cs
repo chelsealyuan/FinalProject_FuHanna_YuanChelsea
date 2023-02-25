@@ -61,7 +61,7 @@ public class AttackScript : MonoBehaviour
                 attackerStats.updateMagicFill(magicCost);
             }
 
-            damage = multiplier * attackerStats.melee;
+            damage = multiplier * attackerStats.baseAtk;
             if (magicAttack)
             {
                 damage = multiplier * attackerStats.magicRange;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Transactions;
 using UnityEngine.SocialPlatforms;
+using TMPro;
 
 
 public class GameController : MonoBehaviour
@@ -13,6 +14,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private GameObject battleMenu;
+
+    public TMP_Text turnText;
     void Start()
     {
         //figures out who goes first depending on what the rate of speed each opponent has
@@ -34,16 +37,29 @@ public class GameController : MonoBehaviour
         
     }
 
-    public void NextTurn()
+    public void setTurnText(string currentUnit)
     {
+        turnText.text = currentUnit + "'s turn!";
+    }
+
+    public void NextTurn()
+    {   
+
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
+
+        //GameObject currentDead = GameObject.FindGameObjectWithTag("Dead");
+        //checkObjDead(currentDead.name);
+
         if (!currentFighterStats.GetDead()) //if fighter is not dead
         {
             GameObject currentUnit = currentFighterStats.gameObject;
             /*
             Debug.Log("current unit is ");
             Debug.Log(currentUnit.tag);*/
+
+            setTurnText(currentUnit.tag);
+
             currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn); //recalc whose turn it is
             fighterStats.Add(currentFighterStats);
             fighterStats.Sort(); //get the next attacker by atk speed
@@ -71,7 +87,16 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            NextTurn();
+            Debug.Log(currentFighterStats.gameObject.tag + " is dead.");
+            //NextTurn();
         }
     }
+
+    public void EndFight(string loser)
+    {
+        Debug.Log(loser);
+
+    }
+    
+
 }

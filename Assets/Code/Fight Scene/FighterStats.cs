@@ -19,7 +19,7 @@ public class FighterStats : MonoBehaviour, IComparable
     [Header("Stats")]
     public float health;
     public float magic;
-    public float melee;
+    public float baseAtk;
     public float magicRange;
     public float defense;
     public float speed;
@@ -62,15 +62,21 @@ public class FighterStats : MonoBehaviour, IComparable
         health = health - damage;
         //Leave off the animation for now
         //animator.Play("Damage");
-        Debug.Log("recieving damage");
+        //Debug.Log("recieving damage");
 
         //set damage text
         if(health <= 0)
         {
             dead = true;
-            gameObject.tag = "Dead";
-            Destroy(healthFill);
+            //gameObject.tag = "Dead";
+            //Destroy(healthFill);
+            EndScreen(gameObject.tag);
+
             Destroy(gameObject);
+            //Debug.Log("this bitch is dead");
+
+
+
         }
         else if (damage > 0)
         {
@@ -78,7 +84,7 @@ public class FighterStats : MonoBehaviour, IComparable
             healthFill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
         }
 
-        Invoke("ContinueGame", 2);
+        Invoke("ContinueGame", 1);
     }
 
     public void updateMagicFill(float cost)
@@ -97,6 +103,13 @@ public class FighterStats : MonoBehaviour, IComparable
     public bool GetDead()
     {
         return dead;
+    }
+
+    void EndScreen(string loser)
+    {
+        //Debug.Log(loser);
+        GameObject.Find("GameControllerObject").GetComponent<GameController>().EndFight(loser); //calls up the screen
+
     }
 
     void ContinueGame()
