@@ -23,6 +23,12 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private TMP_Text fightOverPanelText;
 
+    [SerializeField]
+    private Button exitButton;
+
+    [SerializeField]
+    private Button rematchButton;
+
     public TMP_Text turnText;
     void Start()
     {
@@ -43,7 +49,8 @@ public class GameController : MonoBehaviour
 
         //sets the gameover screen
         fightOverPanel.SetActive(false);
-        fightOverPanelText.gameObject.SetActive(false);
+        //fightOverPanelText.gameObject.SetActive(false);
+        rematchButton.gameObject.SetActive(false);
 
 
         NextTurn();
@@ -109,19 +116,33 @@ public class GameController : MonoBehaviour
     {
         Debug.Log(loser);
         fightOverPanel.SetActive(true);
-        fightOverPanelText.gameObject.SetActive(true);
+        //fightOverPanelText.gameObject.SetActive(true);
         turnText.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(true);
+
 
         if (loser == "Enemy")
         {
             fightOverPanelText.text = "You Win";
+
         }
         else if (loser == "Player")
         {
             fightOverPanelText.text = " You Lose! Git Gud!";
+            rematchButton.gameObject.SetActive(true);
 
         }
 
+    }
+
+    public void ReloadFight()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //resets the scene
+    }
+
+    public void ExitFight()
+    {
+        SceneManager.LoadScene("ExplorationScene");
     }
     
 

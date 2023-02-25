@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //can enter the fight scene
     {
 
         if (collision.gameObject.name == "FightActivator")
@@ -60,4 +60,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    
 }

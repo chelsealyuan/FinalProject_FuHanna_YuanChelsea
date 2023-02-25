@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FighterAction : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class FighterAction : MonoBehaviour
         else
         {
             Debug.Log("Run");
+            SceneManager.LoadScene("ExplorationScene");
+
+
         }
     }
 
