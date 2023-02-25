@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Transactions;
 using UnityEngine.SocialPlatforms;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class GameController : MonoBehaviour
@@ -14,6 +16,12 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private GameObject battleMenu;
+
+    [SerializeField]
+    private GameObject fightOverPanel;
+
+    [SerializeField]
+    private TMP_Text fightOverPanelText;
 
     public TMP_Text turnText;
     void Start()
@@ -32,6 +40,11 @@ public class GameController : MonoBehaviour
 
         fighterStats.Sort();
         this.battleMenu.SetActive(false);
+
+        //sets the gameover screen
+        fightOverPanel.SetActive(false);
+        fightOverPanelText.gameObject.SetActive(false);
+
 
         NextTurn();
         
@@ -95,6 +108,19 @@ public class GameController : MonoBehaviour
     public void EndFight(string loser)
     {
         Debug.Log(loser);
+        fightOverPanel.SetActive(true);
+        fightOverPanelText.gameObject.SetActive(true);
+        turnText.gameObject.SetActive(false);
+
+        if (loser == "Enemy")
+        {
+            fightOverPanelText.text = "You Win";
+        }
+        else if (loser == "Player")
+        {
+            fightOverPanelText.text = " You Lose! Git Gud!";
+
+        }
 
     }
     

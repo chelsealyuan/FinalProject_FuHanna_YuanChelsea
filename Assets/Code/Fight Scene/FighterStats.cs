@@ -69,7 +69,7 @@ public class FighterStats : MonoBehaviour, IComparable
         {
             dead = true;
             //gameObject.tag = "Dead";
-            //Destroy(healthFill);
+            Destroy(healthFill);
             EndScreen(gameObject.tag);
 
             Destroy(gameObject);
