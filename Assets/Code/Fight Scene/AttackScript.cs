@@ -41,7 +41,7 @@ public class AttackScript : MonoBehaviour
     }
 
 
-    public void Attack(GameObject victim)
+    public void Attack(GameObject victim, string spellType)
     {
 
         //Debug.Log("This turn's victim is " + victim.tag);
@@ -58,6 +58,36 @@ public class AttackScript : MonoBehaviour
                 attackerStats.updateMagicFill(magicCost);
             }
 
+
+            //check what damage is being done
+            if (spellType == "elementOne") //rn elementone is fire
+            {
+                if (targetStats.status == FighterStats.elementalStatus.water)
+                {
+                    Debug.Log("vaporize");
+                    multiplier *= 2;
+                    targetStats.status = FighterStats.elementalStatus.none;
+                }
+                else
+                {
+                    targetStats.status = FighterStats.elementalStatus.fire;
+                }
+            }
+
+            if (spellType == "elementTwo") 
+            {
+                if (targetStats.status == FighterStats.elementalStatus.fire)
+                {
+                    Debug.Log("vaporize");
+                    multiplier *= 2;
+                    targetStats.status = FighterStats.elementalStatus.none;
+                }
+                else
+                {
+                    targetStats.status = FighterStats.elementalStatus.water;
+                }
+            }
+
             damage = multiplier * attackerStats.baseAtk;
 
             if (magicAttack)
@@ -69,12 +99,13 @@ public class AttackScript : MonoBehaviour
             //float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
 
             //A diminishing returns defense calculation
+            Debug.Log("The " + victim + " was attacked with spell type " + spellType + " with " + targetStats.status + " element applied");
             damage = damage * (100 / (100 + targetStats.defense));
 
             //leave out animation for now
             //owner.GetComponent<Animator>().Play(animationName)
 
-            Debug.Log(Mathf.RoundToInt(damage));
+            //Debug.Log(Mathf.RoundToInt(damage));
             targetStats.ReceiveDamage(Mathf.RoundToInt(damage));
             //attackerStats.updateMagicFill(magicCost);
 

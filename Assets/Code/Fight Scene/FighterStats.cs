@@ -42,6 +42,16 @@ public class FighterStats : MonoBehaviour, IComparable
     private float xNewHealthScale;
     private float xNewMagicScale;
 
+    public elementalStatus status;
+
+    //status/elemental effects
+    public enum elementalStatus
+    {
+        none, 
+        fire, 
+        water
+    }
+
     void Awake()
     {
         healthTransform = healthFill.GetComponent<RectTransform>();
@@ -52,6 +62,8 @@ public class FighterStats : MonoBehaviour, IComparable
 
         startHealth = health;
         startMagic = magic;
+
+        status = elementalStatus.none;
     }
 
 
@@ -72,7 +84,6 @@ public class FighterStats : MonoBehaviour, IComparable
             EndScreen(gameObject.tag);
 
             Destroy(gameObject);
-            //Debug.Log("this bitch is dead");
 
 
 

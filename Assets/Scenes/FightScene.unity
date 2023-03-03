@@ -1056,13 +1056,14 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthFill: {fileID: 1893170506}
   magicFill: {fileID: 1055583053}
-  health: 200
+  health: 300
   magic: 50
   baseAtk: 100
   magicRange: 0
   defense: 80
   speed: 12
   nextActTurn: 0
+  status: 0
 --- !u!114 &847045338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,7 +1434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -232.71004}
+  m_AnchoredPosition: {x: 0, y: -232.71}
   m_SizeDelta: {x: 0, y: -465.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062730076
@@ -1560,11 +1561,11 @@ PrefabInstance:
       objectReference: {fileID: 847045334}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: maxMultiplier
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: minMultiplier
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: minAttackMultiplier
@@ -1745,6 +1746,7 @@ MonoBehaviour:
   defense: 50
   speed: 13
   nextActTurn: 0
+  status: 0
 --- !u!1 &1254587031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3459,7 +3461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: minMultiplier
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: maxAttackMultiplier

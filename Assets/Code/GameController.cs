@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
 
     public void EndFight(string loser)
     {
-        Debug.Log(loser);
+        //Debug.Log(loser);
         fightOverPanel.SetActive(true);
         //fightOverPanelText.gameObject.SetActive(true);
         turnText.gameObject.SetActive(false);

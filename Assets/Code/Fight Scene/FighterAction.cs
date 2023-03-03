@@ -39,19 +39,19 @@ public class FighterAction : MonoBehaviour
 
         if (btn.CompareTo("elementOne") == 0)
         {
-            elementOnePrefab.GetComponent<AttackScript>().Attack(victim);
+            elementOnePrefab.GetComponent<AttackScript>().Attack(victim, "elementOne");
         }
         else if (btn.CompareTo("elementTwo") == 0)
         {
-            elementTwoPrefab.GetComponent<AttackScript>().Attack(victim);
+            elementTwoPrefab.GetComponent<AttackScript>().Attack(victim, "elementTwo");
         }
         else if (btn.CompareTo("elementThree") == 0)
         { 
-            elementThreePrefab.GetComponent<AttackScript>().Attack(victim);
+            elementThreePrefab.GetComponent<AttackScript>().Attack(victim, "elementThree");
         }
         else if (btn.CompareTo("elementFour") == 0)
         {
-            elementFourPrefab.GetComponent<AttackScript>().Attack(victim);
+            elementFourPrefab.GetComponent<AttackScript>().Attack(victim, "elementFour");
         }
         else
         {
