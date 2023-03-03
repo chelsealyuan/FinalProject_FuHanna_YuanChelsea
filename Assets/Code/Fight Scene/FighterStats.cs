@@ -23,7 +23,6 @@ public class FighterStats : MonoBehaviour, IComparable
     public float magicRange;
     public float defense;
     public float speed;
-    public float experience;
 
     private float startHealth;
     private float startMagic;

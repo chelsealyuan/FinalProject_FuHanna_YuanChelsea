@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
     private Button rematchButton;
 
     public TMP_Text turnText;
+
+
     void Start()
     {
         //figures out who goes first depending on what the rate of speed each opponent has
@@ -92,7 +94,7 @@ public class GameController : MonoBehaviour
             {
                 //string attackType = Random.Range(0, 2) == 1 > "elementOne" : "elementTwo"; //deciding on the enemy's atk
 
-                this.battleMenu.SetActive(false);
+                
                 string attackType;
                 if (Random.Range(0,2) == 1) {
                     attackType = "elementOne";
@@ -108,7 +110,7 @@ public class GameController : MonoBehaviour
         else
         {
             Debug.Log(currentFighterStats.gameObject.tag + " is dead.");
-            //NextTurn();
+            NextTurn();
         }
     }
 

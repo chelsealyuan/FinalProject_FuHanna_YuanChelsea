@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91007934}
   - component: {fileID: 91007933}
+  - component: {fileID: 91007935}
   m_Layer: 0
   m_Name: GameControllerObject
   m_TagString: Untagged
@@ -249,6 +250,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91007935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91007932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb2c02e176743a89a73cd4afb6da7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &161919901
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
+  battleMenu: {fileID: 0}
 --- !u!1 &224635889
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +550,14 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1189782754}
+    - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
+      propertyPath: maxMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
+      propertyPath: minMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: maxAttackMultiplier
       value: 1.7
@@ -853,6 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
+  battleMenu: {fileID: 0}
 --- !u!1 &576183238
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,8 +963,8 @@ GameObject:
   m_Component:
   - component: {fileID: 847045336}
   - component: {fileID: 847045335}
-  - component: {fileID: 847045338}
   - component: {fileID: 847045337}
+  - component: {fileID: 847045338}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1032,13 +1056,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthFill: {fileID: 1893170506}
   magicFill: {fileID: 1055583053}
-  health: 12
+  health: 200
   magic: 50
-  baseAtk: 12
+  baseAtk: 100
   magicRange: 0
-  defense: 5
+  defense: 80
   speed: 12
-  experience: 0
   nextActTurn: 0
 --- !u!114 &847045338
 MonoBehaviour:
@@ -1054,6 +1077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementOnePrefab: {fileID: 1997205522}
   elementTwoPrefab: {fileID: 1939644913}
+  elementThreePrefab: {fileID: 0}
+  elementFourPrefab: {fileID: 0}
 --- !u!1001 &905635719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1070,6 +1095,14 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1189782754}
+    - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
+      propertyPath: maxMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
+      propertyPath: minMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: maxAttackMultiplier
       value: 1.1
@@ -1400,7 +1433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -232.71002}
+  m_AnchoredPosition: {x: 0, y: -232.71004}
   m_SizeDelta: {x: 0, y: -465.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062730076
@@ -1525,6 +1558,14 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 847045334}
+    - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
+      propertyPath: maxMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
+      propertyPath: minMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: minAttackMultiplier
       value: 0.5
@@ -1680,6 +1721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementOnePrefab: {fileID: 237937678}
   elementTwoPrefab: {fileID: 905635721}
+  elementThreePrefab: {fileID: 0}
+  elementFourPrefab: {fileID: 0}
 --- !u!114 &1189782759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1695,13 +1738,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthFill: {fileID: 1569808389}
   magicFill: {fileID: 1470766925}
-  health: 8
+  health: 200
   magic: 50
-  baseAtk: 15
+  baseAtk: 110
   magicRange: 0
-  defense: 4
+  defense: 50
   speed: 13
-  experience: 0
   nextActTurn: 0
 --- !u!1 &1254587031
 GameObject:
@@ -2545,6 +2587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
+  battleMenu: {fileID: 0}
 --- !u!1 &1569808389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,6 +3452,14 @@ PrefabInstance:
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: magicCost
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
+      propertyPath: maxMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
+      propertyPath: minMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: maxAttackMultiplier

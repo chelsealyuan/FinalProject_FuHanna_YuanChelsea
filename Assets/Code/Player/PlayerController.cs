@@ -15,6 +15,14 @@ public class PlayerController : MonoBehaviour
     public KeyCode keyRight;
     public float moveSpeed;
 
+    SavePlayerPosition playerPositionData;
+
+    private void Awake()
+    {
+        playerPositionData = FindObjectOfType<SavePlayerPosition>();
+        playerPositionData.PlayerPositionLoad();
+        Debug.Log(playerPositionData);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.name == "FightActivator")
         {
+
+            playerPositionData.PlayerPositionSave();
             SceneManager.LoadScene("FightScene");
         }
 

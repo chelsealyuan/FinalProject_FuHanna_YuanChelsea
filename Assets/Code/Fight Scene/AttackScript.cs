@@ -19,16 +19,14 @@ public class AttackScript : MonoBehaviour
     private float magicCost;
 
     [SerializeField]
-    private float minAttackMultiplier;
+    private float minMultiplier;
 
     [SerializeField]
-    private float maxAttackMultiplier;
+    private float maxMultiplier;
 
-    [SerializeField]
-    private float minDefenseMultiplier;
 
-    [SerializeField]
-    private float maxDefenseMultiplier;
+
+
 
     private FighterStats attackerStats;
     private FighterStats targetStats;
@@ -45,16 +43,15 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject victim)
     {
-        Debug.Log("This turn's victim is " + victim.tag);
-        Debug.Log("This turn's caster is " + owner.tag); //sometimes not picking up
 
+        //Debug.Log("This turn's victim is " + victim.tag);
+        //Debug.Log("This turn's caster is " + owner.tag); 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
-
         
         if (attackerStats.magic >= magicCost)
         {
-            float multiplier = Random.Range(minAttackMultiplier, maxAttackMultiplier);
+            float multiplier = Random.Range(minMultiplier, maxMultiplier);
           
             if (magicCost > 0)
             {
@@ -62,24 +59,38 @@ public class AttackScript : MonoBehaviour
             }
 
             damage = multiplier * attackerStats.baseAtk;
+
             if (magicAttack)
             {
-                damage = multiplier * attackerStats.magicRange;
+                //damage = multiplier * attackerStats.magicRange;
                 attackerStats.magic = attackerStats.magic - magicCost;
             }
 
-            float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
-            damage = Mathf.Max(0, damage = (defenseMultiplier * targetStats.defense));
+            //float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
+
+            //A diminishing returns defense calculation
+            damage = damage * (100 / (100 + targetStats.defense));
 
             //leave out animation for now
             //owner.GetComponent<Animator>().Play(animationName)
 
-            targetStats.ReceiveDamage(damage);
+            Debug.Log(Mathf.RoundToInt(damage));
+            targetStats.ReceiveDamage(Mathf.RoundToInt(damage));
             //attackerStats.updateMagicFill(magicCost);
+
+
+            if (victim.CompareTag("Enemy"))
+            {
+                ApplyElement();
+            }
         }
     
     }
 
+    public void ApplyElement()
+    {
+        Debug.Log(this.gameObject.name);
+    }
     
 
 }

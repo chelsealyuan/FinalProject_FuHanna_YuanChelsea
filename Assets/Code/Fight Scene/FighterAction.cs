@@ -14,6 +14,12 @@ public class FighterAction : MonoBehaviour
     [SerializeField]
     private GameObject elementTwoPrefab;
 
+    [SerializeField]
+    private GameObject elementThreePrefab;
+
+    [SerializeField]
+    private GameObject elementFourPrefab;
+
     private GameObject currentAttack;
 
 
@@ -33,20 +39,23 @@ public class FighterAction : MonoBehaviour
 
         if (btn.CompareTo("elementOne") == 0)
         {
-            //Debug.Log("Element 1 Button Pressed");
             elementOnePrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else if (btn.CompareTo("elementTwo") == 0)
         {
-            //Debug.Log("Element 2 Button Pressed");
             elementTwoPrefab.GetComponent<AttackScript>().Attack(victim);
+        }
+        else if (btn.CompareTo("elementThree") == 0)
+        { 
+            elementThreePrefab.GetComponent<AttackScript>().Attack(victim);
+        }
+        else if (btn.CompareTo("elementFour") == 0)
+        {
+            elementFourPrefab.GetComponent<AttackScript>().Attack(victim);
         }
         else
         {
-            Debug.Log("Run");
             SceneManager.LoadScene("ExplorationScene");
-
-
         }
     }
 
