@@ -43,11 +43,11 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject victim, string spellType)
     {
-
-        //Debug.Log("This turn's victim is " + victim.tag);
-        //Debug.Log("This turn's caster is " + owner.tag); 
+        Debug.Log("This turn's victim is " + victim.tag);
+        Debug.Log("This turn's caster is " + owner.tag); 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
+
         
         if (attackerStats.magic >= magicCost)
         {
@@ -58,6 +58,7 @@ public class AttackScript : MonoBehaviour
                 attackerStats.updateMagicFill(magicCost);
             }
 
+           
 
             //check what damage is being done
             if (spellType == "elementOne") //rn elementone is fire
@@ -65,11 +66,21 @@ public class AttackScript : MonoBehaviour
                 if (targetStats.status == FighterStats.elementalStatus.water)
                 {
                     Debug.Log("vaporize");
-                    multiplier *= 2;
+                    multiplier += maxMultiplier / 2;
+                    targetStats.status = FighterStats.elementalStatus.none;
+                }
+                else if (targetStats.status == FighterStats.elementalStatus.earth)
+                {
+                    //Debug.Log(attackerStats.tag);
+                    Debug.Log("crystallize");
+                    
+                    attackerStats.defense += 30;
                     targetStats.status = FighterStats.elementalStatus.none;
                 }
                 else
                 {
+                    //Debug.Log(attackerStats.tag);
+
                     targetStats.status = FighterStats.elementalStatus.fire;
                 }
             }
@@ -78,13 +89,39 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == FighterStats.elementalStatus.fire)
                 {
-                    Debug.Log("vaporize");
-                    multiplier *= 2;
+                    //Debug.Log("vaporize");
+                    multiplier += maxMultiplier / 2;
+                    targetStats.status = FighterStats.elementalStatus.none;
+                }
+                else if (targetStats.status == FighterStats.elementalStatus.earth)
+                {
+                    //Debug.Log(attackerStats.tag);
+                    Debug.Log("crystallize");
+                    attackerStats.defense += 30;
                     targetStats.status = FighterStats.elementalStatus.none;
                 }
                 else
                 {
+                    //Debug.Log(attackerStats.tag);
+
                     targetStats.status = FighterStats.elementalStatus.water;
+                }
+            }
+
+            if (spellType == "elementThree")
+            {
+                if (targetStats.status == FighterStats.elementalStatus.fire || targetStats.status == FighterStats.elementalStatus.water)
+                {
+                    Debug.Log(attackerStats.tag);
+                    Debug.Log("earth applied last crystallize");
+
+                    attackerStats.defense += 30;
+                    targetStats.status = FighterStats.elementalStatus.none;
+                }
+                else
+                {
+                    //Debug.Log(attackerStats.tag);
+                    targetStats.status = FighterStats.elementalStatus.earth;
                 }
             }
 
@@ -99,7 +136,7 @@ public class AttackScript : MonoBehaviour
             //float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
 
             //A diminishing returns defense calculation
-            Debug.Log("The " + victim + " was attacked with spell type " + spellType + " with " + targetStats.status + " element applied");
+            //Debug.Log("The " + victim + " was attacked with spell type " + spellType + " with " + targetStats.status + " element applied");
             damage = damage * (100 / (100 + targetStats.defense));
 
             //leave out animation for now
@@ -109,19 +146,8 @@ public class AttackScript : MonoBehaviour
             targetStats.ReceiveDamage(Mathf.RoundToInt(damage));
             //attackerStats.updateMagicFill(magicCost);
 
-
-            if (victim.CompareTag("Enemy"))
-            {
-                ApplyElement();
-            }
         }
     
     }
-
-    public void ApplyElement()
-    {
-        Debug.Log(this.gameObject.name);
-    }
-    
 
 }

@@ -49,7 +49,8 @@ public class FighterStats : MonoBehaviour, IComparable
     {
         none, 
         fire, 
-        water
+        water,
+        earth
     }
 
     void Awake()

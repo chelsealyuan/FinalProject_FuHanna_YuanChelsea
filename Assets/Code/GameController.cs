@@ -76,9 +76,6 @@ public class GameController : MonoBehaviour
         if (!currentFighterStats.GetDead()) //if fighter is not dead
         {
             GameObject currentUnit = currentFighterStats.gameObject;
-            /*
-            Debug.Log("current unit is ");
-            Debug.Log(currentUnit.tag);*/
 
             setTurnText(currentUnit.tag);
 
@@ -88,14 +85,12 @@ public class GameController : MonoBehaviour
             
             if (currentUnit.tag == "Player") //originally was currentUnit.tag == "Player"
             {
-                this.battleMenu.SetActive(true);
+                battleMenu.SetActive(true);
             }
             else
             {
-                //string attackType = Random.Range(0, 2) == 1 > "elementOne" : "elementTwo"; //deciding on the enemy's atk
-
-                
                 string attackType;
+                /*
                 if (Random.Range(0,2) == 1) {
                     attackType = "elementOne";
                 }
@@ -103,7 +98,11 @@ public class GameController : MonoBehaviour
                 {
                     attackType = "elementTwo";
                 }
+               
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
+                */
+                currentUnit.GetComponent<FighterAction>().SelectAttack("elementOne");
+
             }
 
         }

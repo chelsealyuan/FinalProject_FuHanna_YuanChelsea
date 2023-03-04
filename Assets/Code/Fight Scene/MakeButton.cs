@@ -24,12 +24,17 @@ public class MakeButton : MonoBehaviour
         if(btn.CompareTo("ElementalOneBtn") == 0)
         {
             player.GetComponent<FighterAction>().SelectAttack("elementOne");
-            this.battleMenu.SetActive(false);
+            battleMenu.SetActive(false);
         }
         else if(btn.CompareTo("ElementalTwoBtn") == 0)
         {
             player.GetComponent<FighterAction>().SelectAttack("elementTwo");
-            this.battleMenu.SetActive(false);
+            battleMenu.SetActive(false);
+        }
+        else if (btn.CompareTo("ElementalThreeBtn") == 0)
+        {
+            player.GetComponent<FighterAction>().SelectAttack("elementThree");
+            battleMenu.SetActive(false);
         }
         else
         {

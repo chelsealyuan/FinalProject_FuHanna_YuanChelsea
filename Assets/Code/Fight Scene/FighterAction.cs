@@ -17,9 +17,6 @@ public class FighterAction : MonoBehaviour
     [SerializeField]
     private GameObject elementThreePrefab;
 
-    [SerializeField]
-    private GameObject elementFourPrefab;
-
     private GameObject currentAttack;
 
 
@@ -48,10 +45,6 @@ public class FighterAction : MonoBehaviour
         else if (btn.CompareTo("elementThree") == 0)
         { 
             elementThreePrefab.GetComponent<AttackScript>().Attack(victim, "elementThree");
-        }
-        else if (btn.CompareTo("elementFour") == 0)
-        {
-            elementFourPrefab.GetComponent<AttackScript>().Attack(victim, "elementFour");
         }
         else
         {
