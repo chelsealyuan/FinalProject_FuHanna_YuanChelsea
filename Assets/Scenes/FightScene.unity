@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
-  battleMenu: {fileID: 0}
+  battleMenu: {fileID: 1579278804}
 --- !u!1 &224635889
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
-  battleMenu: {fileID: 0}
+  battleMenu: {fileID: 1579278804}
 --- !u!1 &576183238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
-  battleMenu: {fileID: 0}
+  battleMenu: {fileID: 1579278804}
 --- !u!1 &1569808389
 GameObject:
   m_ObjectHideFlags: 0
