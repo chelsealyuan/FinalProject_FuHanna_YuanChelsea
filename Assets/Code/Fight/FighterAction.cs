@@ -30,23 +30,28 @@ public class FighterAction : MonoBehaviour
     {
         GameObject victim = player;
 
-        if (tag == "Player") {
+        if (CompareTag("Player")) {
             victim = enemy;
         }
+
+        Debug.Log(victim.tag);
 
         if (btn.CompareTo("elementOne") == 0)
         {
             elementOnePrefab.GetComponent<AttackScript>().Attack(victim, "elementOne");
         }
+
         else if (btn.CompareTo("elementTwo") == 0)
         {
             elementTwoPrefab.GetComponent<AttackScript>().Attack(victim, "elementTwo");
         }
+
         else if (btn.CompareTo("elementThree") == 0)
         { 
             elementThreePrefab.GetComponent<AttackScript>().Attack(victim, "elementThree");
         }
-        else
+
+        else /* (btn.CompareTo("escape") == 0)*/
         {
             SceneManager.LoadScene("ExplorationScene");
         }

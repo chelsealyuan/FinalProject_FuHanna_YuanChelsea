@@ -43,12 +43,14 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(GameObject victim, string spellType)
     {
-        Debug.Log("This turn's victim is " + victim.tag);
-        Debug.Log("This turn's caster is " + owner.tag); 
+        //Debug.Log("This turn's victim is " + victim.tag);
+        //Debug.Log("This turn's caster is " + owner.tag); 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
 
-        
+        Debug.Log(owner);
+        //Debug.Log(targetStats.tag);
+
         if (attackerStats.magic >= magicCost)
         {
             float multiplier = Random.Range(minMultiplier, maxMultiplier);
@@ -57,8 +59,6 @@ public class AttackScript : MonoBehaviour
             {
                 attackerStats.updateMagicFill(magicCost);
             }
-
-           
 
             //check what damage is being done
             if (spellType == "elementOne") //rn elementone is fire
@@ -108,12 +108,12 @@ public class AttackScript : MonoBehaviour
                 }
             }
 
+
             if (spellType == "elementThree")
             {
-                if (targetStats.status == FighterStats.elementalStatus.fire || targetStats.status == FighterStats.elementalStatus.water)
+                if (targetStats.status == FighterStats.elementalStatus.fire || targetStats.status == FighterStats.elementalStatus.water) 
                 {
-                    Debug.Log(attackerStats.tag);
-                    Debug.Log("earth applied last crystallize");
+                    //Debug.Log(targetStats.status);
 
                     attackerStats.defense += 30;
                     targetStats.status = FighterStats.elementalStatus.none;

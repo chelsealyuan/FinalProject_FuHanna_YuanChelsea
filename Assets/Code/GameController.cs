@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //figures out who goes first depending on what the rate of speed each opponent has
+
+
         fighterStats = new List<FighterStats>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         FighterStats currentFighterStats = player.GetComponent<FighterStats>();
@@ -65,8 +67,7 @@ public class GameController : MonoBehaviour
     }
 
     public void NextTurn()
-    {   
-
+    {
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
 
