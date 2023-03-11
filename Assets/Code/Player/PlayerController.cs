@@ -71,6 +71,12 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("FightScene");
         }
 
+        if (collision.gameObject.name == "FightActivatorTwo")
+        {
+            playerPositionData.PlayerPositionSave();
+            SceneManager.LoadScene("FightSceneTwo");
+        }
+
     }
 
     
