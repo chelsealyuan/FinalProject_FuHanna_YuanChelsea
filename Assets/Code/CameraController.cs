@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("Finding player in start");
         if (target)
         {
             offset = transform.position - target.position;

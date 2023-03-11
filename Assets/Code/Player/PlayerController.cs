@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     //Outlets
     Rigidbody2D _rigidbody;
 
@@ -17,17 +19,19 @@ public class PlayerController : MonoBehaviour
 
     SavePlayerPosition playerPositionData;
 
-    private void Awake()
+    void Awake()
     {
-        playerPositionData = FindObjectOfType<SavePlayerPosition>();
-        playerPositionData.PlayerPositionLoad();
-        Debug.Log(playerPositionData);
+        instance = this;
+       // playerPositionData.PlayerPositionSave();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        playerPositionData = FindObjectOfType<SavePlayerPosition>();
+        playerPositionData.PlayerPositionLoad();
     }
 
     // Update is called once per frame
@@ -61,10 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //can enter the fight scene
     {
-
         if (collision.gameObject.name == "FightActivator")
         {
-
             playerPositionData.PlayerPositionSave();
             SceneManager.LoadScene("FightScene");
         }

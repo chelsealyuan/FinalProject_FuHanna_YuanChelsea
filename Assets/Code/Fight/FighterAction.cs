@@ -30,11 +30,10 @@ public class FighterAction : MonoBehaviour
     {
         GameObject victim = player;
 
-        if (CompareTag("Player")) {
+        if (CompareTag("Player"))
+        {
             victim = enemy;
         }
-
-        Debug.Log(victim.tag);
 
         if (btn.CompareTo("elementOne") == 0)
         {

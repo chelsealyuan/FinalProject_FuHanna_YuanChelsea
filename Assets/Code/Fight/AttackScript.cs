@@ -48,8 +48,6 @@ public class AttackScript : MonoBehaviour
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
 
-        Debug.Log(owner);
-        //Debug.Log(targetStats.tag);
 
         if (attackerStats.magic >= magicCost)
         {
@@ -71,7 +69,7 @@ public class AttackScript : MonoBehaviour
                 }
                 else if (targetStats.status == FighterStats.elementalStatus.earth)
                 {
-                    //Debug.Log(attackerStats.tag);
+                   
                     Debug.Log("crystallize");
                     
                     attackerStats.defense += 30;
@@ -79,8 +77,6 @@ public class AttackScript : MonoBehaviour
                 }
                 else
                 {
-                    //Debug.Log(attackerStats.tag);
-
                     targetStats.status = FighterStats.elementalStatus.fire;
                 }
             }
@@ -89,21 +85,17 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == FighterStats.elementalStatus.fire)
                 {
-                    //Debug.Log("vaporize");
                     multiplier += maxMultiplier / 2;
                     targetStats.status = FighterStats.elementalStatus.none;
                 }
                 else if (targetStats.status == FighterStats.elementalStatus.earth)
                 {
-                    //Debug.Log(attackerStats.tag);
                     Debug.Log("crystallize");
                     attackerStats.defense += 30;
                     targetStats.status = FighterStats.elementalStatus.none;
                 }
                 else
                 {
-                    //Debug.Log(attackerStats.tag);
-
                     targetStats.status = FighterStats.elementalStatus.water;
                 }
             }
@@ -113,14 +105,11 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == FighterStats.elementalStatus.fire || targetStats.status == FighterStats.elementalStatus.water) 
                 {
-                    //Debug.Log(targetStats.status);
-
                     attackerStats.defense += 30;
                     targetStats.status = FighterStats.elementalStatus.none;
                 }
                 else
                 {
-                    //Debug.Log(attackerStats.tag);
                     targetStats.status = FighterStats.elementalStatus.earth;
                 }
             }
