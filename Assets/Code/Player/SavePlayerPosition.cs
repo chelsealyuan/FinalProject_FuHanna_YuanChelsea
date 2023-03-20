@@ -41,6 +41,10 @@ public class SavePlayerPosition : MonoBehaviour
         OBSTACLE FROM THE LOWER LEFT
         */
 
+
+        //player.transform.position = Random.insideUnitCircle.normalized * 2;
+
+
         adjusted_pX = player.transform.position.x + 1;
         adjusted_pY = player.transform.position.y + 1;
 
