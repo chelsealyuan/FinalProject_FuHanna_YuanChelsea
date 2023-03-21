@@ -27,32 +27,18 @@ public class SavePlayerPosition : MonoBehaviour
         
     }
 
-    public void PlayerPositionSave()
+    public void PlayerPositionSave(Vector3 colliderPosition)
     {
-        float adjusted_pX;
-        float adjusted_pY;
 
-        /*
-         TODO: Come up with a method to better to make sure character
-        does not accidentally touch fight trigger again upon resetting
-        into the exploration scene
+       Vector3 shiftVector = Random.insideUnitCircle.normalized * 2;
 
-        //NOTE THE CURRENT CALCULATION BELOW WILL BUG IF YOU APPROACH THE
-        OBSTACLE FROM THE LOWER LEFT
-        */
-
-
-        //player.transform.position = Random.insideUnitCircle.normalized * 2;
-
-
-        adjusted_pX = player.transform.position.x + 1;
-        adjusted_pY = player.transform.position.y + 1;
+        float adjusted_pX = colliderPosition.x + shiftVector.x;
+        float adjusted_pY = colliderPosition.y + shiftVector.y;
 
         PlayerPrefs.SetFloat("p_x", adjusted_pX);
         PlayerPrefs.SetFloat("p_y", adjusted_pY);
         PlayerPrefs.SetInt("Saved", 1);
-        Debug.Log(player.transform.position.x + " and " + player.transform.position.y);
-        //Debug.Log(adjusted_pX + " and " + adjusted_pY);
+
         PlayerPrefs.Save();
     }
 

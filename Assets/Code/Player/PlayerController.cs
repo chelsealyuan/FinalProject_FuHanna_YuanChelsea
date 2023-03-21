@@ -65,15 +65,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //can enter the fight scene
     {
+
         if (collision.gameObject.name == "FightActivator")
         {
-            playerPositionData.PlayerPositionSave();
+            playerPositionData.PlayerPositionSave(collision.gameObject.transform.position);
             SceneManager.LoadScene("FightScene");
         }
 
         if (collision.gameObject.name == "FightActivatorTwo")
         {
-            playerPositionData.PlayerPositionSave();
+            playerPositionData.PlayerPositionSave(collision.gameObject.transform.position);
             SceneManager.LoadScene("FightSceneTwo");
         }
 
