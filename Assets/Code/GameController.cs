@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
 
     public TMP_Text turnText;
 
+    public GameObject damageTextPrefab;
+
 
     void Start()
     {
@@ -68,11 +70,10 @@ public class GameController : MonoBehaviour
 
     public void NextTurn()
     {
+
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
 
-        //GameObject currentDead = GameObject.FindGameObjectWithTag("Dead");
-        //checkObjDead(currentDead.name);
 
         if (!currentFighterStats.GetDead()) //if fighter is not dead
         {
@@ -84,14 +85,14 @@ public class GameController : MonoBehaviour
             fighterStats.Add(currentFighterStats);
             fighterStats.Sort(); //get the next attacker by atk speed
             
-            if (currentUnit.tag == "Player") //originally was currentUnit.tag == "Player"
+            if (currentUnit.CompareTag("Player"))
             {
                 battleMenu.SetActive(true);
             }
             else
             {
                 string attackType;
-                /*
+                
                 if (Random.Range(0,2) == 1) {
                     attackType = "elementOne";
                 }
@@ -101,9 +102,6 @@ public class GameController : MonoBehaviour
                 }
                
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
-                */
-                currentUnit.GetComponent<FighterAction>().SelectAttack("elementOne");
-
             }
 
         }

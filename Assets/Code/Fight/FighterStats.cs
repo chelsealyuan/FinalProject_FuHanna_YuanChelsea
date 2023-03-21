@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class FighterStats : MonoBehaviour, IComparable
 {
@@ -44,6 +45,10 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public elementalStatus status;
 
+
+    private GameObject GameControllerObj;
+
+
     //status/elemental effects
     public enum elementalStatus
     {
@@ -65,19 +70,31 @@ public class FighterStats : MonoBehaviour, IComparable
         startMagic = magic;
 
         status = elementalStatus.none;
+
+        GameControllerObj = GameObject.Find("GameControllerObject");
     }
 
 
-    public void ReceiveDamage(float damage)
+    public void ReceiveDamage(float damage, GameObject victim)
     {
-        //Debug.Log("receive damage");
-        health = health - damage;
+        //play damage text animation
+        //create a damage text instance
+        GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
+        GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);
+        //set instance with damage numbers
+        DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
+
+
+
+        //reduce health
+        health -= damage;
+
         //Leave off the animation for now
         //animator.Play("Damage");
-        //Debug.Log("recieving damage");
 
-        //set damage text
-        if(health <= 0)
+
+        //check if player or enemy is dead
+        if (health <= 0)
         {
             dead = true;
             //gameObject.tag = "Dead";
@@ -86,8 +103,6 @@ public class FighterStats : MonoBehaviour, IComparable
 
             Destroy(gameObject);
 
-
-
         }
         else if (damage > 0)
         {
@@ -95,7 +110,8 @@ public class FighterStats : MonoBehaviour, IComparable
             healthFill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
         }
 
-        Invoke("ContinueGame", 1);
+
+        Invoke("ContinueGame", 2);
     }
 
     public void updateMagicFill(float cost)

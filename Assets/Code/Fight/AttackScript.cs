@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -25,9 +26,6 @@ public class AttackScript : MonoBehaviour
     private float maxMultiplier;
 
 
-
-
-
     private FighterStats attackerStats;
     private FighterStats targetStats;
     private float damage = 0.0f;
@@ -38,6 +36,7 @@ public class AttackScript : MonoBehaviour
     private void Start()
     {
         magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
+       
     }
 
 
@@ -126,14 +125,16 @@ public class AttackScript : MonoBehaviour
 
             //A diminishing returns defense calculation
             //Debug.Log("The " + victim + " was attacked with spell type " + spellType + " with " + targetStats.status + " element applied");
-            damage = damage * (100 / (100 + targetStats.defense));
+            damage = Mathf.RoundToInt(damage * (100 / (100 + targetStats.defense)));
 
             //leave out animation for now
             //owner.GetComponent<Animator>().Play(animationName)
 
-            //Debug.Log(Mathf.RoundToInt(damage));
-            targetStats.ReceiveDamage(Mathf.RoundToInt(damage));
+          
+            targetStats.ReceiveDamage(damage, victim);
             //attackerStats.updateMagicFill(magicCost);
+
+            
 
         }
     
