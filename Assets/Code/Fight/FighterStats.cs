@@ -48,7 +48,6 @@ public class FighterStats : MonoBehaviour, IComparable
 
     private GameObject GameControllerObj;
 
-
     //status/elemental effects
     public enum elementalStatus
     {
@@ -75,12 +74,18 @@ public class FighterStats : MonoBehaviour, IComparable
     }
 
 
+    public void SetElementalStatusIcon(elementalStatus status)
+    {
+        //Debug.Log(status);
+    }
+
+
     public void ReceiveDamage(float damage, GameObject victim)
     {
         //play damage text animation
         //create a damage text instance
         GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
-        GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);
+        GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position + new Vector3(0.0f, 2.0f, 0.0f), victim.transform.rotation);
         //set instance with damage numbers
         DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
 

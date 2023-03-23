@@ -11,9 +11,6 @@ public class AttackScript : MonoBehaviour
     public GameObject owner;
 
     [SerializeField]
-    private string animationName;
-
-    [SerializeField]
     private bool magicAttack;
 
     [SerializeField]
@@ -25,28 +22,43 @@ public class AttackScript : MonoBehaviour
     [SerializeField]
     private float maxMultiplier;
 
+    private Animator _animator;
+
 
     private FighterStats attackerStats;
     private FighterStats targetStats;
     private float damage = 0.0f;
-    private float xMagicNewScale;
     private Vector2 magicScale;
+
+
 
 
     private void Start()
     {
         magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
-       
+        _animator = owner.GetComponent<Animator>();
     }
 
 
     public void Attack(GameObject victim, string spellType)
     {
-        //Debug.Log("This turn's victim is " + victim.tag);
-        //Debug.Log("This turn's caster is " + owner.tag); 
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
 
+        if (owner.CompareTag("Player"))
+        {
+            Debug.Log(targetStats.status.ToString());
+            if (targetStats.status.ToString() != "none")
+            {
+                _animator.SetTrigger("Reaction Attack");
+            }
+            else
+            {
+                _animator.SetTrigger("Normal Attack");
+            }
+
+        }
+     
 
         if (attackerStats.magic >= magicCost)
         {
@@ -134,7 +146,7 @@ public class AttackScript : MonoBehaviour
             targetStats.ReceiveDamage(damage, victim);
             //attackerStats.updateMagicFill(magicCost);
 
-            
+            targetStats.SetElementalStatusIcon(targetStats.status);
 
         }
     

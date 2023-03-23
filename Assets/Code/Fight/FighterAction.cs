@@ -46,7 +46,7 @@ public class FighterAction : MonoBehaviour
         }
 
         else if (btn.CompareTo("elementThree") == 0)
-        { 
+        {
             elementThreePrefab.GetComponent<AttackScript>().Attack(victim, "elementThree");
         }
 
