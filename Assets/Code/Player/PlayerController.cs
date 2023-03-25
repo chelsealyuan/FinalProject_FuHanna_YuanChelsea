@@ -92,6 +92,13 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("FightSceneTwo");
         }
 
+        if (collision.gameObject.name == "Chest")
+        {
+            GlobalVariables.money += 50;
+
+            Destroy(collision.gameObject);
+        }
+
     }
 
     

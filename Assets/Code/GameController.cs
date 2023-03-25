@@ -123,7 +123,11 @@ public class GameController : MonoBehaviour
 
         if (loser == "Enemy")
         {
-            fightOverPanelText.text = "You Win";
+            GlobalVariables.money += 100;
+            //Debug.Log(GlobalVariables.money);
+
+            fightOverPanelText.text = "You Win! You have gained 100 welkins. You now have " + GlobalVariables.money + " welkins.";
+            
 
         }
         else if (loser == "Player")
