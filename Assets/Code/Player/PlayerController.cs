@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     //Outlets
     Rigidbody2D _rigidbody;
+    Animator _animator;
 
     //configuration
     public KeyCode keyUp;
@@ -29,9 +30,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
 
         playerPositionData = FindObjectOfType<SavePlayerPosition>();
         playerPositionData.PlayerPositionLoad();
+    }
+
+    void Update()
+    {
+        float movementSpeed = _rigidbody.velocity.sqrMagnitude;
+
+        _animator.SetFloat("speed", movementSpeed);
+        if (movementSpeed > 0.1f)
+        {
+            _animator.SetFloat("movementX", _rigidbody.velocity.x);
+            _animator.SetFloat("movementY", _rigidbody.velocity.y);
+        }
     }
 
     // Update is called once per frame
