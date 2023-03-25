@@ -16,6 +16,9 @@ public class FighterStats : MonoBehaviour, IComparable
     [SerializeField]
     private GameObject magicFill;
 
+    [SerializeField]
+    private GameObject elementPrefab; //holds the sprites of elementalStatus
+
 
     [Header("Stats")]
     public float health;
@@ -44,6 +47,8 @@ public class FighterStats : MonoBehaviour, IComparable
     private float xNewMagicScale;
 
     public elementalStatus status;
+
+    public Sprite[] spriteArray;
 
 
     private GameObject GameControllerObj;
@@ -76,7 +81,37 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void SetElementalStatusIcon(elementalStatus status)
     {
-        //Debug.Log(status);
+        Debug.Log(status);
+
+        Sprite elementSprite;
+
+        switch (status)
+        {
+            case elementalStatus.none:
+                elementSprite = spriteArray[0];
+                elementPrefab.GetComponent<Image>().sprite = elementSprite;
+                break;
+
+            case elementalStatus.fire:
+                elementSprite = spriteArray[1];
+                elementPrefab.GetComponent<Image>().sprite = elementSprite;
+                break;
+
+            case elementalStatus.water:
+                elementSprite = spriteArray[2];
+                elementPrefab.GetComponent<Image>().sprite = elementSprite;
+                break;
+
+            case elementalStatus.earth:
+                elementSprite = spriteArray[3];
+                elementPrefab.GetComponent<Image>().sprite = elementSprite;
+                break;
+
+        }
+
+        
+
+
     }
 
 

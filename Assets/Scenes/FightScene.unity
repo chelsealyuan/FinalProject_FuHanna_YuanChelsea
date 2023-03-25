@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851834498889226619, guid: caaa6600221524c219c91c72412ce3b5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -804,6 +808,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5569086095997293639, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
   m_PrefabInstance: {fileID: 237937676}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &344992398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1897518066014207024, guid: caaa6600221524c219c91c72412ce3b5, type: 3}
+  m_PrefabInstance: {fileID: 1897518067466977445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &387643866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   battleMenu: {fileID: 1579278804}
+--- !u!1 &568030017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1897518066014207024, guid: caaa6600221524c219c91c72412ce3b5, type: 3}
+  m_PrefabInstance: {fileID: 88077915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &847045334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1236,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthFill: {fileID: 1893170506}
   magicFill: {fileID: 1055583053}
+  elementPrefab: {fileID: 568030017}
   health: 300
   magic: 50
   baseAtk: 100
@@ -1230,6 +1245,11 @@ MonoBehaviour:
   speed: 12
   nextActTurn: 0
   status: 0
+  spriteArray:
+  - {fileID: 21300000, guid: c10bbbd284ef09746a5a02db3dd571f6, type: 3}
+  - {fileID: -1668978744, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -1914828651, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -797383792, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
 --- !u!114 &847045338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,6 +1964,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthFill: {fileID: 1569808389}
   magicFill: {fileID: 1470766925}
+  elementPrefab: {fileID: 344992398}
   health: 200
   magic: 50
   baseAtk: 110
@@ -1952,6 +1973,11 @@ MonoBehaviour:
   speed: 13
   nextActTurn: 0
   status: 0
+  spriteArray:
+  - {fileID: 21300000, guid: c10bbbd284ef09746a5a02db3dd571f6, type: 3}
+  - {fileID: -1668978744, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -1914828651, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -797383792, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
 --- !u!95 &1189782760
 Animator:
   serializedVersion: 5
