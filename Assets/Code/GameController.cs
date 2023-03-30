@@ -126,13 +126,21 @@ public class GameController : MonoBehaviour
             GlobalVariables.money += 100;
             //Debug.Log(GlobalVariables.money);
 
-            fightOverPanelText.text = "You Win! You have gained 100 welkins. You now have " + GlobalVariables.money + " welkins.";
+            fightOverPanelText.text = "You Win! You have gained 100 breads. You now have " + GlobalVariables.money + " breads.";
             
 
         }
         else if (loser == "Player")
         {
-            fightOverPanelText.text = " You Lose! Git Gud!";
+            fightOverPanelText.text = "You Lose 50 breads! Git Gud!";
+
+            GlobalVariables.money -= 50;
+
+            if (GlobalVariables.money <= 0)
+            {
+                GlobalVariables.money = 0;
+            }
+            
             rematchButton.gameObject.SetActive(true);
 
         }
