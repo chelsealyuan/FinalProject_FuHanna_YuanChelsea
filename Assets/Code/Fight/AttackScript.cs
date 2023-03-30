@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
+using static FighterStats;
 
 public class AttackScript : MonoBehaviour
 {
@@ -31,13 +30,16 @@ public class AttackScript : MonoBehaviour
     private Vector2 magicScale;
 
 
-
+    private GameObject GameControllerObj;
 
     private void Start()
     {
         magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
         _animator = owner.GetComponent<Animator>();
+        GameControllerObj = GameObject.Find("GameControllerObject");
     }
+
+
 
 
     public void Attack(GameObject victim, string spellType)
@@ -45,19 +47,9 @@ public class AttackScript : MonoBehaviour
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
 
-        if (owner.CompareTag("Player"))
-        {
-            Debug.Log(targetStats.status.ToString());
-            if (targetStats.status.ToString() != "none")
-            {
-                _animator.SetTrigger("Reaction Attack");
-            }
-            else
-            {
-                _animator.SetTrigger("Normal Attack");
-            }
+        ElementalStatus newStatus = ElementalStatus.none;
 
-        }
+        string reaction = "";
      
 
         if (attackerStats.magic >= magicCost)
@@ -66,62 +58,60 @@ public class AttackScript : MonoBehaviour
           
             if (magicCost > 0)
             {
-                attackerStats.updateMagicFill(magicCost);
+                attackerStats.UpdateMagicFill(magicCost);
             }
 
             //check what damage is being done
             if (spellType == "elementOne") //rn elementone is fire
             {
-                if (targetStats.status == FighterStats.elementalStatus.water)
+                if (targetStats.status == ElementalStatus.water)
                 {
-                    Debug.Log("vaporize");
                     multiplier += maxMultiplier / 2;
-                    targetStats.status = FighterStats.elementalStatus.none;
+                    newStatus = ElementalStatus.none;
                 }
-                else if (targetStats.status == FighterStats.elementalStatus.earth)
+                else if (targetStats.status == ElementalStatus.earth)
                 {
-                   
-                    Debug.Log("crystallize");
-                    
-                    attackerStats.defense += 30;
-                    targetStats.status = FighterStats.elementalStatus.none;
+                    reaction = "defenseboost";
+                    attackerStats.defense += maxMultiplier / 2;
+                    newStatus = ElementalStatus.none;
                 }
                 else
                 {
-                    targetStats.status = FighterStats.elementalStatus.fire;
+                    newStatus = ElementalStatus.fire;
                 }
             }
 
             if (spellType == "elementTwo") 
             {
-                if (targetStats.status == FighterStats.elementalStatus.fire)
+                if (targetStats.status == ElementalStatus.fire)
                 {
                     multiplier += maxMultiplier / 2;
-                    targetStats.status = FighterStats.elementalStatus.none;
+                    newStatus = ElementalStatus.none;
                 }
-                else if (targetStats.status == FighterStats.elementalStatus.earth)
+                else if (targetStats.status == ElementalStatus.earth)
                 {
-                    Debug.Log("crystallize");
-                    attackerStats.defense += 30;
-                    targetStats.status = FighterStats.elementalStatus.none;
+                    reaction = "defenseboost";
+                    attackerStats.defense += maxMultiplier / 2;
+                    newStatus = ElementalStatus.none;
                 }
                 else
                 {
-                    targetStats.status = FighterStats.elementalStatus.water;
+                    newStatus = ElementalStatus.water;
                 }
             }
 
 
             if (spellType == "elementThree")
             {
-                if (targetStats.status == FighterStats.elementalStatus.fire || targetStats.status == FighterStats.elementalStatus.water) 
+                if (targetStats.status == ElementalStatus.fire || targetStats.status == ElementalStatus.water) 
                 {
-                    attackerStats.defense += 30;
-                    targetStats.status = FighterStats.elementalStatus.none;
+                    reaction = "defenseboost";
+                    attackerStats.defense += maxMultiplier / 2;
+                    newStatus = ElementalStatus.none;
                 }
                 else
                 {
-                    targetStats.status = FighterStats.elementalStatus.earth;
+                    newStatus = ElementalStatus.earth;
                 }
             }
 
@@ -130,26 +120,96 @@ public class AttackScript : MonoBehaviour
             if (magicAttack)
             {
                 //damage = multiplier * attackerStats.magicRange;
-                attackerStats.magic = attackerStats.magic - magicCost;
+                attackerStats.magic -= magicCost;
             }
 
-            //float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
-
-            //A diminishing returns defense calculation
-            //Debug.Log("The " + victim + " was attacked with spell type " + spellType + " with " + targetStats.status + " element applied");
             damage = Mathf.RoundToInt(damage * (100 / (100 + targetStats.defense)));
 
-            //leave out animation for now
-            //owner.GetComponent<Animator>().Play(animationName)
 
-          
-            targetStats.ReceiveDamage(damage, victim);
-            //attackerStats.updateMagicFill(magicCost);
+            StartCoroutine(AttackCoroutine(victim, reaction));
 
-            targetStats.SetElementalStatusIcon(targetStats.status);
-
+            targetStats.status = newStatus;
         }
     
     }
 
+
+    //Used to execute attack sequence after animation has played
+    IEnumerator AttackCoroutine(GameObject victim, string reaction)
+    {
+        //play attack animation
+        float animationDuration = PlayAttackAnimation(reaction);
+        yield return new WaitForSeconds(animationDuration);
+
+        //show damage number text
+        PlayDamageTextAnimation(damage, victim);
+
+        //recieve damage
+        targetStats.ReceiveDamage(damage, victim);
+
+        //change elemental status
+        targetStats.SetElementalStatusIcon(targetStats.status);
+    }
+
+    //Plays correct attack animation and returns duration for yield time in coroutine
+    private float PlayAttackAnimation(string reaction)
+    {
+        float animationDuration = 0f;
+        string currentAnimation;
+
+        if (owner.CompareTag("Player"))
+        {
+            if (targetStats.status == ElementalStatus.none)
+            {
+                _animator.SetTrigger("Standard Attack");
+                currentAnimation = "StandardAttack";
+                
+
+            }
+            else if (targetStats.status == ElementalStatus.earth || reaction == "defenseboost")
+            {
+                _animator.SetTrigger("Defense Boost");
+                currentAnimation = "DefenseBoost";
+            }
+            else
+            {
+                _animator.SetTrigger("Reaction Attack");
+                currentAnimation = "ReactionAttack";
+            }
+
+        }
+        else
+        {
+            _animator.SetTrigger("Attack");
+            currentAnimation = "Attack";
+        }
+
+        RuntimeAnimatorController ac = _animator.runtimeAnimatorController;
+
+        for (int i = 0; i < ac.animationClips.Length; i++)
+        {
+            if (ac.animationClips[i].name == currentAnimation)
+            {
+                animationDuration = ac.animationClips[i].length;
+            }
+        }
+
+        return animationDuration;
+    }
+
+
+    //creates instance of the damage text, destroyed upon end of animation
+    public void PlayDamageTextAnimation(float damage, GameObject victim)
+    {
+        //play damage text animation
+        //create a damage text instance
+        GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
+        GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);
+        //set instance with damage numbers
+        DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
+    }
+
+    
+
+    
 }
