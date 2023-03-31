@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour
         }
         else if (loser == "Player")
         {
-            fightOverPanelText.text = "You Lose 50 breads! Git Gud!";
+            fightOverPanelText.text = "You Lose 50 breads! Git Gud! You now have " + GlobalVariables.money + " breads.";
 
             GlobalVariables.money -= 50;
 
