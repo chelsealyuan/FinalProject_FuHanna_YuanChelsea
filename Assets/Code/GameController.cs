@@ -33,10 +33,13 @@ public class GameController : MonoBehaviour
 
     public GameObject damageTextPrefab;
 
+    public GameObject[] enemyPrefabs;
+
 
     void Start()
     {
-        //figures out who goes first depending on what the rate of speed each opponent has
+        //set who the enemy
+        SetEnemy(GlobalVariables.currentEnemy);
 
 
         fighterStats = new List<FighterStats>();
@@ -60,10 +63,10 @@ public class GameController : MonoBehaviour
 
 
         NextTurn();
-        
+
     }
 
-    public void setTurnText(string currentUnit)
+    public void SetTurnText(string currentUnit)
     {
         turnText.text = currentUnit + "'s turn!";
     }
@@ -79,12 +82,12 @@ public class GameController : MonoBehaviour
         {
             GameObject currentUnit = currentFighterStats.gameObject;
 
-            setTurnText(currentUnit.tag);
+            SetTurnText(currentUnit.tag);
 
             currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn); //recalc whose turn it is
             fighterStats.Add(currentFighterStats);
             fighterStats.Sort(); //get the next attacker by atk speed
-            
+
             if (currentUnit.CompareTag("Player"))
             {
                 battleMenu.SetActive(true);
@@ -92,15 +95,16 @@ public class GameController : MonoBehaviour
             else
             {
                 string attackType;
-                
-                if (Random.Range(0,2) == 1) {
+
+                if (Random.Range(0, 2) == 1)
+                {
                     attackType = "elementOne";
                 }
                 else
                 {
                     attackType = "elementTwo";
                 }
-               
+
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
             }
 
@@ -127,7 +131,7 @@ public class GameController : MonoBehaviour
             //Debug.Log(GlobalVariables.money);
 
             fightOverPanelText.text = "You Win! You have gained 100 breads. You now have " + GlobalVariables.money + " breads.";
-            
+
 
         }
         else if (loser == "Player")
@@ -140,7 +144,7 @@ public class GameController : MonoBehaviour
             {
                 GlobalVariables.money = 0;
             }
-            
+
             rematchButton.gameObject.SetActive(true);
 
         }
@@ -156,6 +160,40 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene("ExplorationScene");
     }
-    
 
+    private void SetEnemy(string enemyName)
+    {
+        GameObject enemyPrefab = null;
+
+        if (enemyName == "BoarFight")
+        {
+            enemyPrefab = enemyPrefabs[0];
+        }
+
+        if (enemyName == "SnakeFight")
+        {
+            enemyPrefab = enemyPrefabs[1];
+        }
+
+        if (enemyName == "GhostFight")
+        {
+            enemyPrefab = enemyPrefabs[2];
+        }
+
+        if (enemyName == "DinoFight")
+        {
+            enemyPrefab = enemyPrefabs[3];
+        }
+
+        if (enemyName == "MushroomFight")
+        {
+            enemyPrefab = enemyPrefabs[4];
+        }
+
+        if(enemyPrefab != null)
+        {
+            Instantiate(enemyPrefab, new Vector3(-4.5f, 1.8f, 0), Quaternion.identity);
+        }
+       
+    }
 }

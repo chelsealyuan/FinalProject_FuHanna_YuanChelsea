@@ -183,7 +183,7 @@ Transform:
   - {fileID: 520837580930066830}
   - {fileID: 520837580225114490}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8178601277689840690
 SpriteRenderer:
@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a489743b34a40a7baade19ce4446c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   healthFill: {fileID: 0}
   magicFill: {fileID: 0}
   elementPrefab: {fileID: 0}
@@ -261,7 +260,11 @@ MonoBehaviour:
   speed: 10
   nextActTurn: 0
   status: 0
-  spriteArray: []
+  spriteArray:
+  - {fileID: 21300000, guid: c10bbbd284ef09746a5a02db3dd571f6, type: 3}
+  - {fileID: -1668978744, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -1914828651, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
+  - {fileID: -797383792, guid: 7afde1a18580e453f9b10dd262cf2742, type: 3}
 --- !u!114 &8178601277689840688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +290,7 @@ Animator:
   m_GameObject: {fileID: 8178601277689840689}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34c84b7fc0bc4446dba4c839476ed697, type: 2}
+  m_Controller: {fileID: 9100000, guid: d089a97ce96cb412e83c4e1d887273bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

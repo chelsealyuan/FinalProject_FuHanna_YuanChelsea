@@ -40,8 +40,6 @@ public class AttackScript : MonoBehaviour
     }
 
 
-
-
     public void Attack(GameObject victim, string spellType)
     {
         attackerStats = owner.GetComponent<FighterStats>();
@@ -201,7 +199,6 @@ public class AttackScript : MonoBehaviour
     //creates instance of the damage text, destroyed upon end of animation
     public void PlayDamageTextAnimation(float damage, GameObject victim)
     {
-        //play damage text animation
         //create a damage text instance
         GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
         GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);

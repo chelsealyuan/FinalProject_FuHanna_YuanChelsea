@@ -5,4 +5,14 @@ using UnityEngine;
 public static class GlobalVariables 
 {
     public static int money { get; set; }
+
+    public static string currentEnemy;
+
+
+    public static int SetEnemy(string enemyName)
+    {
+        currentEnemy = enemyName;
+        return 0;
+    }
 }
+

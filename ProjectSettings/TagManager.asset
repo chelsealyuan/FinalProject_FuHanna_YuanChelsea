@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Dead
   - Enemy
+  - FightActivator
+  - Health Fill
+  - Magic Fill
+  - Elemental Prefab
   layers:
   - Default
   - TransparentFX

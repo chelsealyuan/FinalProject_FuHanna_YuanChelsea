@@ -36,7 +36,7 @@ Transform:
   - {fileID: 8406255151912833816}
   - {fileID: 8406255151986176999}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &149565499094239729
 SpriteRenderer:
@@ -102,9 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a489743b34a40a7baade19ce4446c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  healthFill: {fileID: 0}
-  magicFill: {fileID: 0}
+  healthFill: {fileID: 6271805639385789113, guid: 428b038ed3aa94fe4880efea8bfbbf96, type: 3}
+  magicFill: {fileID: 914377946897834028, guid: 97d49e558dba2450da340afb00fa9a9b, type: 3}
   elementPrefab: {fileID: 0}
   health: 300
   magic: 50

@@ -8,9 +8,6 @@ using TMPro;
 public class FighterStats : MonoBehaviour, IComparable
 {
     [SerializeField]
-    private Animator animator;
-
-    [SerializeField]
     private GameObject healthFill;
 
     [SerializeField]
@@ -63,6 +60,13 @@ public class FighterStats : MonoBehaviour, IComparable
 
     void Awake()
     {
+        if (CompareTag("Enemy"))
+        {
+            healthFill = GameObject.FindWithTag("Health Fill");
+            magicFill = GameObject.FindWithTag("Magic Fill");
+            elementPrefab = GameObject.FindWithTag("Elemental Prefab");
+        }
+
         healthTransform = healthFill.GetComponent<RectTransform>();
         healthScale = healthFill.transform.localScale;
 
@@ -73,8 +77,6 @@ public class FighterStats : MonoBehaviour, IComparable
         startMagic = magic;
 
         status = ElementalStatus.none;
-
-        
     }
 
 

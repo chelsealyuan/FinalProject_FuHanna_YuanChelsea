@@ -17,13 +17,12 @@ public class FighterAction : MonoBehaviour
     [SerializeField]
     private GameObject elementThreePrefab;
 
-    private GameObject currentAttack;
 
-
-    void Awake()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+
     }
 
     public void SelectAttack(string btn)
@@ -35,8 +34,11 @@ public class FighterAction : MonoBehaviour
             victim = enemy;
         }
 
+
+
         if (btn.CompareTo("elementOne") == 0)
         {
+            
             elementOnePrefab.GetComponent<AttackScript>().Attack(victim, "elementOne");
         }
 
