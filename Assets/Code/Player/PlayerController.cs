@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
         playerPositionData = FindObjectOfType<SavePlayerPosition>();
         playerPositionData.PlayerPositionLoad();
+
+        
     }
 
     void Update()
@@ -94,7 +96,16 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+
+        if (collision.gameObject.name == "Signpost")
+        {
+            MenuController.instance.Show();
+        }
+
+
+
     }
 
-    
+
+
 }

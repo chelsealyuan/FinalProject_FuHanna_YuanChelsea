@@ -8,6 +8,8 @@ public class MenuController : MonoBehaviour
     public static MenuController instance;
 
     public GameObject tutorialMenu;
+    public GameObject contextMenu;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,17 +21,22 @@ public class MenuController : MonoBehaviour
     {
         //ShowMainMenu();
         gameObject.SetActive(true);
-        Time.timeScale = 0;
+       
         //PlayerController.instance.isPaused = true;
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
-        Time.timeScale = 1;
-        if (PlayerController.instance != null)
-        {
-            //PlayerController.instance.isPaused = false;
-        }
+       
+    }
+
+    void SwitchMenu(GameObject menuChoice)
+    {
+        contextMenu.SetActive(false);
+        tutorialMenu.SetActive(false);
+
+
+        menuChoice.SetActive(true);
     }
 }
