@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MakeButton : MonoBehaviour
+public class MakeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private bool element;
     private GameObject player;
 
     [SerializeField]
     private GameObject battleMenu;
+
+    public GameObject buttonText;
+
 
     void Start()
     {
         string temp = gameObject.name;
         gameObject.GetComponent<Button>().onClick.AddListener(() => AttachCallback(temp));
         player = GameObject.FindGameObjectWithTag("Player");
+
+        buttonText.SetActive(false);
     }
 
     public void AttachCallback(string btn)
@@ -44,4 +48,16 @@ public class MakeButton : MonoBehaviour
 
        
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        buttonText.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        buttonText.SetActive(false);
+    }
+
+
 }
