@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
 
     public GameObject damageTextPrefab;
 
+    public GameObject reactionTextPrefab;
+
     public GameObject[] enemyPrefabs;
 
 

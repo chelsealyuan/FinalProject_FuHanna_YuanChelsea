@@ -32,6 +32,8 @@ public class AttackScript : MonoBehaviour
 
     private GameObject GameControllerObj;
 
+    private string[] reactions = new string[] { "Scald", "Caramelize", "Knead" };
+
     private void Start()
     {
         magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
@@ -48,6 +50,7 @@ public class AttackScript : MonoBehaviour
         ElementalStatus newStatus = ElementalStatus.none;
 
         string reaction = "";
+        string reactionEffect = "";
      
 
         if (attackerStats.magic >= magicCost)
@@ -64,13 +67,15 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == ElementalStatus.water)
                 {
+                    reaction = reactions[0];
                     multiplier += maxMultiplier / 2;
                     newStatus = ElementalStatus.none;
                 }
                 else if (targetStats.status == ElementalStatus.earth)
                 {
-                    reaction = "defenseboost";
-                    attackerStats.defense += maxMultiplier / 2;
+                    reaction = reactions[1];
+                    reactionEffect = "defenseboost";
+                    attackerStats.defense += attackerStats.defense * maxMultiplier / 2;
                     newStatus = ElementalStatus.none;
                 }
                 else
@@ -83,13 +88,15 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == ElementalStatus.fire)
                 {
+                    reaction = reactions[0];
                     multiplier += maxMultiplier / 2;
                     newStatus = ElementalStatus.none;
                 }
                 else if (targetStats.status == ElementalStatus.earth)
                 {
-                    reaction = "defenseboost";
-                    attackerStats.defense += maxMultiplier / 2;
+                    reaction = reactions[2];
+                    reactionEffect = "defenseboost";
+                    attackerStats.defense += attackerStats.defense * maxMultiplier / 2;
                     newStatus = ElementalStatus.none;
                 }
                 else
@@ -103,8 +110,16 @@ public class AttackScript : MonoBehaviour
             {
                 if (targetStats.status == ElementalStatus.fire || targetStats.status == ElementalStatus.water) 
                 {
-                    reaction = "defenseboost";
-                    attackerStats.defense += maxMultiplier / 2;
+                    if(targetStats.status == ElementalStatus.fire)
+                    {
+                        reaction = reactions[1];
+                    }
+                    else
+                    {
+                        reaction = reactions[2];
+                    }
+                    reactionEffect = "defenseboost";
+                    attackerStats.defense += attackerStats.defense * maxMultiplier / 2;
                     newStatus = ElementalStatus.none;
                 }
                 else
@@ -124,7 +139,7 @@ public class AttackScript : MonoBehaviour
             damage = Mathf.RoundToInt(damage * (100 / (100 + targetStats.defense)));
 
 
-            StartCoroutine(AttackCoroutine(victim, reaction));
+            StartCoroutine(AttackCoroutine(victim, reaction, reactionEffect));
 
             targetStats.status = newStatus;
         }
@@ -133,14 +148,15 @@ public class AttackScript : MonoBehaviour
 
 
     //Used to execute attack sequence after animation has played
-    IEnumerator AttackCoroutine(GameObject victim, string reaction)
+    IEnumerator AttackCoroutine(GameObject victim, string reaction, string reactionEffect)
     {
         //play attack animation
-        float animationDuration = PlayAttackAnimation(reaction);
+        float animationDuration = PlayAttackAnimation(reactionEffect);
         yield return new WaitForSeconds(animationDuration);
 
         //show damage number text
-        PlayDamageTextAnimation(damage, victim);
+        PlayDamageTextAnimation(damage, victim, reaction);
+        PlayReactionText(reaction, victim, owner);
 
         //recieve damage
         targetStats.ReceiveDamage(damage, victim);
@@ -150,7 +166,7 @@ public class AttackScript : MonoBehaviour
     }
 
     //Plays correct attack animation and returns duration for yield time in coroutine
-    private float PlayAttackAnimation(string reaction)
+    private float PlayAttackAnimation(string reactionEffect)
     {
         float animationDuration = 0f;
         string currentAnimation;
@@ -160,11 +176,9 @@ public class AttackScript : MonoBehaviour
             if (targetStats.status == ElementalStatus.none)
             {
                 _animator.SetTrigger("Standard Attack");
-                currentAnimation = "StandardAttack";
-                
-
+                currentAnimation = "StandardAttack"; 
             }
-            else if (targetStats.status == ElementalStatus.earth || reaction == "defenseboost")
+            else if (targetStats.status == ElementalStatus.earth || reactionEffect == "defenseboost")
             {
                 _animator.SetTrigger("Defense Boost");
                 currentAnimation = "DefenseBoost";
@@ -197,15 +211,35 @@ public class AttackScript : MonoBehaviour
 
 
     //creates instance of the damage text, destroyed upon end of animation
-    public void PlayDamageTextAnimation(float damage, GameObject victim)
+    public void PlayDamageTextAnimation(float damage, GameObject victim, string reaction)
     {
         //create a damage text instance
         GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
         GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);
         //set instance with damage numbers
         DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
+
+        if(reaction != "")
+        {
+            DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.red;
+        }
+        
     }
 
+    public void PlayReactionText(string reaction, GameObject victim, GameObject owner)
+    {
+        GameObject reactionTextPrefab = GameControllerObj.GetComponent<GameController>().reactionTextPrefab;
+        GameObject ReactionTextInstance = Instantiate(reactionTextPrefab, victim.transform.position + new Vector3(-1.0f, -1.0f, 0), victim.transform.rotation);
+        //set instance with damage numbers
+        ReactionTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(reaction);
+
+        if(reaction == reactions[1] || reaction == reactions[2])
+        {
+            GameObject defTextPrefab = GameControllerObj.GetComponent<GameController>().reactionTextPrefab;
+            GameObject defTextInstance = Instantiate(defTextPrefab, owner.transform.position + new Vector3(-1.0f, -1.0f, 0), owner.transform.rotation);
+            defTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("Defense Boost");
+        }
+    }
     
 
     

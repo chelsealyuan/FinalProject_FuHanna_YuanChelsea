@@ -46,7 +46,7 @@ public class MakeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         }
 
-       
+        buttonText.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
