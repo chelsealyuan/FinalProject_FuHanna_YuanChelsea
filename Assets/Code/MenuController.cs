@@ -19,7 +19,7 @@ public class MenuController : MonoBehaviour
 
     public void Show()
     {
-        //ShowMainMenu();
+        showContext();
         gameObject.SetActive(true);
        
         //PlayerController.instance.isPaused = true;
@@ -38,5 +38,15 @@ public class MenuController : MonoBehaviour
 
 
         menuChoice.SetActive(true);
+    }
+
+    public void showContext()
+    {
+        SwitchMenu(contextMenu);
+    }
+
+    public void showTutorial()
+    {
+        SwitchMenu(tutorialMenu);
     }
 }

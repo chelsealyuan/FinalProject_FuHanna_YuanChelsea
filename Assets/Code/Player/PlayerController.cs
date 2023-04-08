@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode keyLeft;
     public KeyCode keyRight;
     public float moveSpeed;
+    public TMP_Text moneyText;
 
     SavePlayerPosition playerPositionData;
 
@@ -48,6 +51,14 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("movementX", _rigidbody.velocity.x);
             _animator.SetFloat("movementY", _rigidbody.velocity.y);
         }
+
+        UpdateDisplay();
+    }
+
+    void UpdateDisplay()
+    {
+        int moneyNum = GlobalVariables.money;
+        moneyText.text = "Breads: " + moneyNum.ToString();
     }
 
     // Update is called once per frame

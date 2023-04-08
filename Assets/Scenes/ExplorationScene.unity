@@ -394,8 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb5efe26c1d846db89a9d6b0acca0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialMenu: {fileID: 275827560}
-  contextMenu: {fileID: 0}
+  tutorialMenu: {fileID: 296841286}
+  contextMenu: {fileID: 283010882}
 --- !u!1 &283010882
 GameObject:
   m_ObjectHideFlags: 0
@@ -27953,7 +27953,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 581196716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275827564}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &581196716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29546,7 +29558,7 @@ GameObject:
   - component: {fileID: 1123376122}
   - component: {fileID: 1123376121}
   m_Layer: 5
-  m_Name: Button - Instructions
+  m_Name: Button - Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29616,7 +29628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1123376122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275827564}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: showTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1123376122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30517,7 +30541,7 @@ GameObject:
   - component: {fileID: 1472978874}
   - component: {fileID: 1472978873}
   m_Layer: 5
-  m_Name: Button - Instructions
+  m_Name: Button - Context
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30587,7 +30611,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1472978874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275827564}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: showContext
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1472978874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31851,7 +31887,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2020546596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275827564}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2020546596
 MonoBehaviour:
   m_ObjectHideFlags: 0
