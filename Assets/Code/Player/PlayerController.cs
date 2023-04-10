@@ -37,8 +37,6 @@ public class PlayerController : MonoBehaviour
 
         playerPositionData = FindObjectOfType<SavePlayerPosition>();
         playerPositionData.PlayerPositionLoad();
-
-        
     }
 
     void Update()
