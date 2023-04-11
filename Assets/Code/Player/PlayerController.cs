@@ -23,10 +23,11 @@ public class PlayerController : MonoBehaviour
 
     SavePlayerPosition playerPositionData;
 
+    public bool isPaused;
+
     void Awake()
     {
         instance = this;
-       // playerPositionData.PlayerPositionSave();
     }
 
     // Start is called before the first frame update
@@ -105,16 +106,21 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-
         if (collision.gameObject.name == "Signpost")
         {
             MenuController.instance.Show();
         }
 
 
+        if (collision.gameObject.CompareTag("Final Reward"))
+        {
+            PopupController.instance.ShowFinal();
+        }
 
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            PopupController.instance.ShowPayment();
+        }
     }
-
-
 
 }

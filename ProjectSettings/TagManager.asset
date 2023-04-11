@@ -10,6 +10,8 @@ TagManager:
   - Health Fill
   - Magic Fill
   - Elemental Prefab
+  - Obstacle
+  - Final Reward
   layers:
   - Default
   - TransparentFX

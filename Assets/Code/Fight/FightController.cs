@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class GameController : MonoBehaviour
+public class FightController : MonoBehaviour
 {
     // Start is called before the first frame update
 

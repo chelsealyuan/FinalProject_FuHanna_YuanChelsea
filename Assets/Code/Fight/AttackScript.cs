@@ -214,7 +214,7 @@ public class AttackScript : MonoBehaviour
     public void PlayDamageTextAnimation(float damage, GameObject victim, string reaction)
     {
         //create a damage text instance
-        GameObject damageTextPrefab = GameControllerObj.GetComponent<GameController>().damageTextPrefab;
+        GameObject damageTextPrefab = GameControllerObj.GetComponent<FightController>().damageTextPrefab;
         GameObject DamageTextInstance = Instantiate(damageTextPrefab, victim.transform.position, victim.transform.rotation);
         //set instance with damage numbers
         DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damage.ToString());
@@ -228,14 +228,14 @@ public class AttackScript : MonoBehaviour
 
     public void PlayReactionText(string reaction, GameObject victim, GameObject owner)
     {
-        GameObject reactionTextPrefab = GameControllerObj.GetComponent<GameController>().reactionTextPrefab;
+        GameObject reactionTextPrefab = GameControllerObj.GetComponent<FightController>().reactionTextPrefab;
         GameObject ReactionTextInstance = Instantiate(reactionTextPrefab, victim.transform.position + new Vector3(-1.0f, -1.0f, 0), victim.transform.rotation);
         //set instance with damage numbers
         ReactionTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(reaction);
 
         if(reaction == reactions[1] || reaction == reactions[2])
         {
-            GameObject defTextPrefab = GameControllerObj.GetComponent<GameController>().reactionTextPrefab;
+            GameObject defTextPrefab = GameControllerObj.GetComponent<FightController>().reactionTextPrefab;
             GameObject defTextInstance = Instantiate(defTextPrefab, owner.transform.position + new Vector3(-1.0f, -1.0f, 0), owner.transform.rotation);
             defTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("Defense Boost");
         }

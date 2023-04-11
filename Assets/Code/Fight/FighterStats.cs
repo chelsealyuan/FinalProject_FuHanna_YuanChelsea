@@ -161,13 +161,13 @@ public class FighterStats : MonoBehaviour, IComparable
     void EndScreen(string loser)
     {
         //Debug.Log(loser);
-        GameObject.Find("GameControllerObject").GetComponent<GameController>().EndFight(loser); //calls up the screen
+        GameObject.Find("GameControllerObject").GetComponent<FightController>().EndFight(loser); //calls up the screen
 
     }
 
     void ContinueGame()
     {
-        GameObject.Find("GameControllerObject").GetComponent<GameController>().NextTurn(); //go to next turn
+        GameObject.Find("GameControllerObject").GetComponent<FightController>().NextTurn(); //go to next turn
     }
 
     public void CalculateNextTurn(int currentTurn)
