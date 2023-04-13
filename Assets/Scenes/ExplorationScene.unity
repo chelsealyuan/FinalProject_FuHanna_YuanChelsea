@@ -1556,6 +1556,7 @@ MonoBehaviour:
   finalMenu: {fileID: 725008786}
   paymentMenu: {fileID: 364789312}
   paymentRejection: {fileID: 1383154477}
+  paymentText: {fileID: 767918770}
 --- !u!1 &460133171
 GameObject:
   m_ObjectHideFlags: 0
