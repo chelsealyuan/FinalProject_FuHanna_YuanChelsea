@@ -8,6 +8,8 @@ public static class GlobalVariables
 
     public static string currentEnemy;
 
+    public static GameObject currentObstacle;
+
 
     public static int SetEnemy(string enemyName)
     {

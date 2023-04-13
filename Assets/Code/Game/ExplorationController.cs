@@ -10,6 +10,8 @@ public class ExplorationController : MonoBehaviour
     public GameObject finalReward;
     public Sprite finalSprite;
 
+    public int obstaclePayment;
+
     void Awake()
     {
         instance = this;

@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1415,8 +1415,8 @@ TextureImporter:
       TX Struct_58: 1084038540
       TX Struct_20: -1096082268
       TX Struct_36: 1785292780
-      TX Struct_40: -1561070440
       TX Struct_50: 510058567
+      TX Struct_40: -1561070440
       TX Struct_31: 28055026
       TX Struct_11: -1447515701
       TX Struct_24: 1657126203

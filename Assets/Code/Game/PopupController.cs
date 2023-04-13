@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PopupController : MonoBehaviour
 {
@@ -10,13 +11,15 @@ public class PopupController : MonoBehaviour
     public GameObject paymentMenu;
     public GameObject paymentRejection;
 
-    public int paymentAmount;
+    private int paymentAmount;
+    public TMP_Text paymentText;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         Hide();
+        paymentAmount = ExplorationController.instance.obstaclePayment;
     }
 
     public void Show()
@@ -38,6 +41,8 @@ public class PopupController : MonoBehaviour
         {
             PlayerController.instance.isPaused = false;
         }
+
+        GlobalVariables.currentObstacle = null;
     }
 
     public void ShowFinal()
@@ -48,6 +53,7 @@ public class PopupController : MonoBehaviour
 
     public void ShowPayment()
     {
+        paymentText.text = "Sacrifice " + paymentAmount + " breads to unlock?";
         Show();
         paymentMenu.SetActive(true);
     }
@@ -67,9 +73,18 @@ public class PopupController : MonoBehaviour
         }
         else
         {
-            Debug.Log("pay");
-            //GlobalVariables.money -= paymentAmount;
-            //remove the obstacle
+            int currentMoney = GlobalVariables.money - paymentAmount;
+            if (currentMoney <= 0)
+            {
+                GlobalVariables.money = 0;
+            }
+            else
+            {
+                GlobalVariables.money -= paymentAmount;
+            }
+
+            GlobalVariables.currentObstacle.SetActive(false);
+            Hide();
         }
     }
 
