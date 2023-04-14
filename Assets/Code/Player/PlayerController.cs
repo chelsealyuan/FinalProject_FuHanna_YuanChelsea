@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
         playerPositionData = FindObjectOfType<SavePlayerPosition>();
         playerPositionData.PlayerPositionLoad();
+
+        DestroyObjects();
     }
 
     void Update()
@@ -52,6 +54,22 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateDisplay();
+    }
+
+    void DestroyObjects()
+    {
+
+        Debug.Log("inside destroy objects");
+        if (GlobalVariables.objectsDestroyed.Count != 0)
+        {
+            //Debug.Log("can destroy objects");
+
+            foreach (string destroyObj in GlobalVariables.objectsDestroyed) {
+                Debug.Log("destroying " + destroyObj);
+                GameObject obj = GameObject.Find(destroyObj);
+                Destroy(obj);
+            }
+        }
     }
 
     void UpdateDisplay()
@@ -104,6 +122,8 @@ public class PlayerController : MonoBehaviour
             GlobalVariables.money += 50;
 
             Destroy(collision.gameObject);
+            GlobalVariables.objectsDestroyed.Add(collision.gameObject.name);
+
         }
 
         if (collision.gameObject.name == "Signpost")

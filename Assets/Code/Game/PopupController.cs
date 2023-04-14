@@ -83,7 +83,12 @@ public class PopupController : MonoBehaviour
                 GlobalVariables.money -= paymentAmount;
             }
 
+            //Destroy(GlobalVariables.currentObstacle);
             GlobalVariables.currentObstacle.SetActive(false);
+            GlobalVariables.objectsDestroyed.Add(GlobalVariables.currentObstacle.name);
+
+           
+
             Hide();
         }
     }

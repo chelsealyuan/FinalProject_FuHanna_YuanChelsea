@@ -10,6 +10,9 @@ public static class GlobalVariables
 
     public static GameObject currentObstacle;
 
+    public static List<string> objectsDestroyed = new List<string>();
+    
+
 
     public static int SetEnemy(string enemyName)
     {
