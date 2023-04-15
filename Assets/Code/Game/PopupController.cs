@@ -91,6 +91,15 @@ public class PopupController : MonoBehaviour
         else
         {
             ShowFinal();
+            int currentMoney = GlobalVariables.money - finalPaymentAmount;
+            if (currentMoney <= 0)
+            {
+                GlobalVariables.money = 0;
+            }
+            else
+            {
+                GlobalVariables.money -= finalPaymentAmount;
+            }
         }
     }
 
@@ -113,10 +122,9 @@ public class PopupController : MonoBehaviour
             }
 
             //Destroy(GlobalVariables.currentObstacle);
-            GlobalVariables.currentObstacle.SetActive(false);
             GlobalVariables.objectsDestroyed.Add(GlobalVariables.currentObstacle.name);
-
-           
+            GlobalVariables.currentObstacle.SetActive(false);
+            
 
             Hide();
         }

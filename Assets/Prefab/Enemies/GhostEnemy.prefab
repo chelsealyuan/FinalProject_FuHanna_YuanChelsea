@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 8178601277689840689}
-  magicAttack: 1
-  magicCost: 0
   minMultiplier: 0.2
   maxMultiplier: 0.4
 --- !u!1 &520837580930066832
@@ -94,8 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 8178601277689840689}
-  magicAttack: 1
-  magicCost: 0
   minMultiplier: 0.2
   maxMultiplier: 0.8
 --- !u!1 &4380142938932085527
@@ -143,8 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 8178601277689840689}
-  magicAttack: 1
-  magicCost: 5
   minMultiplier: 0.5
   maxMultiplier: 1
 --- !u!1 &8178601277689840689
@@ -250,13 +244,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthFill: {fileID: 0}
-  magicFill: {fileID: 0}
   elementPrefab: {fileID: 0}
   health: 150
-  magic: 50
-  baseAtk: 250
-  magicRange: 0
-  defense: 10
+  baseAtk: 240
+  defense: 60
   speed: 10
   nextActTurn: 0
   status: 0

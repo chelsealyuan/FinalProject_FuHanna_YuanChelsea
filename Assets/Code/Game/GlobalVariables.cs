@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GlobalVariables 
+public static class GlobalVariables
 {
-    public static int money { get; set; }
+    public static int money = 0; /*{ get; set;}*/
 
     public static string currentEnemy;
 

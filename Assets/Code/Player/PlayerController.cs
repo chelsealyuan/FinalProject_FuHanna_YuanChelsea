@@ -58,14 +58,11 @@ public class PlayerController : MonoBehaviour
 
     void DestroyObjects()
     {
-
-        Debug.Log("inside destroy objects");
+        //Debug.Log("inside destroy objects");
         if (GlobalVariables.objectsDestroyed.Count != 0)
         {
-            //Debug.Log("can destroy objects");
-
             foreach (string destroyObj in GlobalVariables.objectsDestroyed) {
-                Debug.Log("destroying " + destroyObj);
+                //Debug.Log("destroying " + destroyObj);
                 GameObject obj = GameObject.Find(destroyObj);
                 obj.SetActive(false);
             }
@@ -121,9 +118,11 @@ public class PlayerController : MonoBehaviour
         {
             GlobalVariables.money += 50;
 
-            Destroy(collision.gameObject);
             GlobalVariables.objectsDestroyed.Add(collision.gameObject.name);
 
+            //Destroy(collision.gameObject);
+
+            collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.name == "Signpost")

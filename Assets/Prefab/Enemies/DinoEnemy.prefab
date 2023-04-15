@@ -103,12 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthFill: {fileID: 0}
-  magicFill: {fileID: 0}
   elementPrefab: {fileID: 0}
-  health: 175
-  magic: 50
+  health: 180
   baseAtk: 120
-  magicRange: 0
   defense: 200
   speed: 10
   nextActTurn: 0
