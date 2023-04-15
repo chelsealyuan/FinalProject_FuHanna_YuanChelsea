@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1968908444084117376}
   - component: {fileID: 1968908444084117383}
   - component: {fileID: 1968908444084117382}
-  - component: {fileID: 1895701271341007809}
+  - component: {fileID: 1001900129684154591}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -194,7 +194,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1895701271341007809
+--- !u!114 &1001900129684154591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
