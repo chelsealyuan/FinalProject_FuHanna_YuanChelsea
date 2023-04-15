@@ -105,9 +105,9 @@ MonoBehaviour:
   healthFill: {fileID: 6271805639385789113, guid: 428b038ed3aa94fe4880efea8bfbbf96, type: 3}
   magicFill: {fileID: 914377946897834028, guid: 97d49e558dba2450da340afb00fa9a9b, type: 3}
   elementPrefab: {fileID: 0}
-  health: 200
+  health: 160
   magic: 50
-  baseAtk: 200
+  baseAtk: 170
   magicRange: 0
   defense: 50
   speed: 10
@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: minMultiplier
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5569086095997293656, guid: f1882aaefe9f645cd8de40bfdf81f9af, type: 3}
       propertyPath: maxAttackMultiplier
@@ -270,11 +270,11 @@ PrefabInstance:
       objectReference: {fileID: 2722080525917302553}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: maxMultiplier
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: minMultiplier
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8555248859728667028, guid: e0ae687a7bcf14e46a8718ffbbde397b, type: 3}
       propertyPath: minAttackMultiplier

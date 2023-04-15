@@ -9,11 +9,11 @@ public class AttackScript : MonoBehaviour
 {
     public GameObject owner;
 
-    [SerializeField]
+    /**[SerializeField]
     private bool magicAttack;
 
     [SerializeField]
-    private float magicCost;
+    private float magicCost;**/
 
     [SerializeField]
     private float minMultiplier;
@@ -27,7 +27,7 @@ public class AttackScript : MonoBehaviour
     private FighterStats attackerStats;
     private FighterStats targetStats;
     private float damage = 0.0f;
-    private Vector2 magicScale;
+    //private Vector2 magicScale;
 
 
     private GameObject GameControllerObj;
@@ -36,7 +36,7 @@ public class AttackScript : MonoBehaviour
 
     private void Start()
     {
-        magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
+        //magicScale = GameObject.Find("PlayerMagicFill").GetComponent<RectTransform>().localScale;
         _animator = owner.GetComponent<Animator>();
         GameControllerObj = GameObject.Find("GameControllerObject");
     }
@@ -53,14 +53,13 @@ public class AttackScript : MonoBehaviour
         string reactionEffect = "";
      
 
-        if (attackerStats.magic >= magicCost)
-        {
+        
             float multiplier = Random.Range(minMultiplier, maxMultiplier);
           
-            if (magicCost > 0)
+            /**if (magicCost > 0)
             {
                 attackerStats.UpdateMagicFill(magicCost);
-            }
+            }*/
 
             //check what damage is being done
             if (spellType == "elementOne") //rn elementone is fire
@@ -130,11 +129,11 @@ public class AttackScript : MonoBehaviour
 
             damage = multiplier * attackerStats.baseAtk;
 
-            if (magicAttack)
+            /**if (magicAttack)
             {
                 //damage = multiplier * attackerStats.magicRange;
                 attackerStats.magic -= magicCost;
-            }
+            }**/
 
             damage = Mathf.RoundToInt(damage * (100 / (100 + targetStats.defense)));
 
@@ -142,7 +141,7 @@ public class AttackScript : MonoBehaviour
             StartCoroutine(AttackCoroutine(victim, reaction, reactionEffect));
 
             targetStats.status = newStatus;
-        }
+        
     
     }
 

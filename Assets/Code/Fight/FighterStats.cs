@@ -10,8 +10,8 @@ public class FighterStats : MonoBehaviour, IComparable
     [SerializeField]
     private GameObject healthFill;
 
-    [SerializeField]
-    private GameObject magicFill;
+    /**[SerializeField]
+    private GameObject magicFill;**/
 
     [SerializeField]
     private GameObject elementPrefab; //holds the sprites of elementalStatus
@@ -19,9 +19,9 @@ public class FighterStats : MonoBehaviour, IComparable
 
     [Header("Stats")]
     public float health;
-    public float magic;
+    //public float magic;
     public float baseAtk;
-    public float magicRange;
+    //public float magicRange;
     public float defense;
     public float speed;
 
@@ -35,10 +35,10 @@ public class FighterStats : MonoBehaviour, IComparable
 
     // Resize health and magic bar
     private Transform healthTransform;
-    private Transform magicTransform;
+    //private Transform magicTransform;
 
     private Vector2 healthScale;
-    private Vector2 magicScale;
+    //private Vector2 magicScale;
 
     private float xNewHealthScale;
     private float xNewMagicScale;
@@ -63,18 +63,18 @@ public class FighterStats : MonoBehaviour, IComparable
         if (CompareTag("Enemy"))
         {
             healthFill = GameObject.FindWithTag("Health Fill");
-            magicFill = GameObject.FindWithTag("Magic Fill");
+            //magicFill = GameObject.FindWithTag("Magic Fill");
             elementPrefab = GameObject.FindWithTag("Elemental Prefab");
         }
 
         healthTransform = healthFill.GetComponent<RectTransform>();
         healthScale = healthFill.transform.localScale;
 
-        magicTransform = magicFill.GetComponent<RectTransform>();
-        magicScale = magicFill.transform.localScale;
+        //magicTransform = magicFill.GetComponent<RectTransform>();
+        //magicScale = magicFill.transform.localScale;
 
         startHealth = health;
-        startMagic = magic;
+        //startMagic = magic;
 
         status = ElementalStatus.none;
     }
@@ -140,7 +140,7 @@ public class FighterStats : MonoBehaviour, IComparable
 
 
 
-    public void UpdateMagicFill(float cost)
+    /**public void UpdateMagicFill(float cost)
     {
         if (cost < 1)
         {
@@ -150,7 +150,7 @@ public class FighterStats : MonoBehaviour, IComparable
 
         }
         
-    }
+    }**/
 
     //checks if thing is dead
     public bool GetDead()
