@@ -12,6 +12,7 @@ TagManager:
   - Elemental Prefab
   - Obstacle
   - Final Reward
+  - Chest
   layers:
   - Default
   - TransparentFX

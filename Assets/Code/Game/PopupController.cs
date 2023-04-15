@@ -7,12 +7,16 @@ public class PopupController : MonoBehaviour
 {
     public static PopupController instance;
 
+    public GameObject finalPaymentMenu;
     public GameObject finalMenu;
     public GameObject paymentMenu;
     public GameObject paymentRejection;
 
     private int paymentAmount;
     public TMP_Text paymentText;
+    private int finalPaymentAmount;
+    public TMP_Text finalPaymentText;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +24,7 @@ public class PopupController : MonoBehaviour
         instance = this;
         Hide();
         paymentAmount = ExplorationController.instance.obstaclePayment;
+        finalPaymentAmount = ExplorationController.instance.finalPayment;
     }
 
     public void Show()
@@ -35,6 +40,7 @@ public class PopupController : MonoBehaviour
         finalMenu.SetActive(false);
         paymentMenu.SetActive(false);
         paymentRejection.SetActive(false);
+        finalPaymentMenu.SetActive(false);
 
         Time.timeScale = 1;
         if (PlayerController.instance != null)
@@ -47,6 +53,7 @@ public class PopupController : MonoBehaviour
 
     public void ShowFinal()
     {
+        finalPaymentMenu.SetActive(false);
         Show();
         finalMenu.SetActive(true);
     }
@@ -58,11 +65,33 @@ public class PopupController : MonoBehaviour
         paymentMenu.SetActive(true);
     }
 
+    public void ShowFinalPayment()
+    {
+        finalPaymentText.text = "Pay " + finalPaymentAmount + " breads to unlock the Ultimate Bread.";
+        Show();
+        finalPaymentMenu.SetActive(true);
+
+    }
+
     public void ShowPaymentRejection()
     {
         Show();
         paymentMenu.SetActive(false);
         paymentRejection.SetActive(true);
+    }
+
+    public void FinalPaymentResult()
+    {
+        finalPaymentMenu.SetActive(false);
+
+        if (GlobalVariables.money < finalPaymentAmount)
+        {
+            ShowPaymentRejection();
+        }
+        else
+        {
+            ShowFinal();
+        }
     }
 
     public void SelectPay()

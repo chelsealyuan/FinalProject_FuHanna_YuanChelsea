@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             foreach (string destroyObj in GlobalVariables.objectsDestroyed) {
                 Debug.Log("destroying " + destroyObj);
                 GameObject obj = GameObject.Find(destroyObj);
-                Destroy(obj);
+                obj.SetActive(false);
             }
         }
     }
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
             GlobalVariables.SetEnemy(collision.gameObject.name);
         }
 
-        if (collision.gameObject.name == "Chest")
+        if (collision.gameObject.CompareTag("Chest"))
         {
             GlobalVariables.money += 50;
 
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Final Reward"))
         {
-            PopupController.instance.ShowFinal();
+            PopupController.instance.ShowFinalPayment();
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))

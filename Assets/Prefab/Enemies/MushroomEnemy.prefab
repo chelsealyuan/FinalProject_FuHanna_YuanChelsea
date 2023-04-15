@@ -252,11 +252,11 @@ MonoBehaviour:
   healthFill: {fileID: 0}
   magicFill: {fileID: 0}
   elementPrefab: {fileID: 0}
-  health: 200
+  health: 400
   magic: 50
-  baseAtk: 200
+  baseAtk: 50
   magicRange: 0
-  defense: 50
+  defense: 100
   speed: 10
   nextActTurn: 0
   status: 0

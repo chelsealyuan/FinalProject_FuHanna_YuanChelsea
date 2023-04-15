@@ -11,6 +11,7 @@ public class ExplorationController : MonoBehaviour
     public Sprite finalSprite;
 
     public int obstaclePayment;
+    public int finalPayment;
 
     void Awake()
     {

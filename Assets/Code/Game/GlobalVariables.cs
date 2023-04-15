@@ -13,11 +13,12 @@ public static class GlobalVariables
     public static List<string> objectsDestroyed = new List<string>();
     
 
-
     public static int SetEnemy(string enemyName)
     {
         currentEnemy = enemyName;
         return 0;
     }
+
+
 }
 
