@@ -138,13 +138,18 @@ public class FightController : MonoBehaviour
         }
         else if (loser == "Player")
         {
-            fightOverPanelText.text = "You Lose 50 breads! Git Gud! You now have " + GlobalVariables.money + " breads.";
-
             GlobalVariables.money -= 50;
 
             if (GlobalVariables.money <= 0)
             {
                 GlobalVariables.money = 0;
+
+                fightOverPanelText.text = "You're too breadless to get breads from... You now have " + GlobalVariables.money + " breads.";
+            }
+            else
+            {
+                fightOverPanelText.text = "You Lose 50 breads! Git Gud! You now have " + GlobalVariables.money + " breads.";
+
             }
 
             rematchButton.gameObject.SetActive(true);
