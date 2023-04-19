@@ -111,6 +111,8 @@ public class PopupController : MonoBehaviour
         }
         else
         {
+            SoundManager.instance.PlayUnlockSound();
+
             int currentMoney = GlobalVariables.money - paymentAmount;
             if (currentMoney <= 0)
             {

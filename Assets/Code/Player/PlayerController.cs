@@ -120,6 +120,8 @@ public class PlayerController : MonoBehaviour
 
             GlobalVariables.objectsDestroyed.Add(collision.gameObject.name);
 
+            SoundManager.instance.PlayChestSound();
+
             //Destroy(collision.gameObject);
 
             collision.gameObject.SetActive(false);
@@ -140,6 +142,8 @@ public class PlayerController : MonoBehaviour
         {
             PopupController.instance.ShowPayment();
             GlobalVariables.currentObstacle = collision.gameObject;
+
+            SoundManager.instance.PlayLockedSound();
         }
     }
 
